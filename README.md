@@ -1,8 +1,8 @@
-# Project 3
+# My_Yearly_Record
 
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-Project 3
+My Yearly Record
 
 ## Description
 
@@ -69,9 +69,14 @@ No test available.
 
 ## Questions
 
-[https://github.com/KelseyRA](https://github.com/KelseyRA)
-<!-- [github.com/](https://github.com/) -->
-[github.com/FranklynSuriel](https://github.com/FranklynSuriel)
+- [github.com/KelseyRA](https://github.com/KelseyRA)
+- [github.com/morgankn](https://github.com/morgankn)
+- [github.com/FranklynSuriel](https://github.com/FranklynSuriel)
 
 Questions about this project or to report an issue can be sent to:
-fsuriel@gmail.com. Please specify the name of the project in the subject of the email.
+
+- kra7888@gmail.com (Kelsey Alderman)
+- morgankn7@gmail.com (Kelsey Morgan)
+- fsuriel@gmail.com. (Franklyn Suriel)
+
+Please specify the name of the project in the subject of the email.
