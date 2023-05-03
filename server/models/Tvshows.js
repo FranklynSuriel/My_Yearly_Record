@@ -1,11 +1,6 @@
 const { Schema } = require('mongoose');
 
-const tvshowsSchema = new Schema({
-    authors: [
-        {
-            type: String,
-        },
-    ],
+const tvShowsSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -16,12 +11,11 @@ const tvshowsSchema = new Schema({
     },
     poster: {
         type: String,
-    },
-    // saved book id from tvShows API
-    tvshowsId: {
+    },    
+    tvShowsId: {
         type: String,
         required: true,
     },
 });
 
-module.exports = tvshowsSchema;
+module.exports = tvShowsSchema;
