@@ -17,8 +17,20 @@ const resolvers = {
         addUser: async(parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
             
-            //     throw new AuthenticationError("");
-            // }
+            const correctPwd = await user.isCorrectPassword(password);
+
+            if (!correctPwd) {
+                throw new AuthenticationError('Wrong username or password!');
+            }
+            const token = signToken(user);
+            return { token, user };
+        },
+        login: async(parent, { email, password }) => {
+            const user = await User.findOne({ $or: [{ username: email }, { email }] });
+
+            if (!user) {
+                throw new AuthenticationError("Can't find this user");
+            }
 
             const correctPwd = await user.isCorrectPassword(password);
 
@@ -27,6 +39,16 @@ const resolvers = {
             }
             const token = signToken(user);
             return { token, user };
+        },
+        savedBook: async (parents, { bookData, User }, context) => {
+            if (context.user) {
+                const updateUser = await User.findOneAndUpdate(
+                    {_id: context.user._id },
+                    { $addToSet: { savedBook: bookData } },
+                    { new: true, runValidators: true}
+                );
+                return updateUser
+            }
         }
     }
 }
