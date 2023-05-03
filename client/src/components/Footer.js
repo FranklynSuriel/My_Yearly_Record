@@ -4,7 +4,9 @@ import React, { useState } from 'react';
 
 function Footer(){
     return (
-<p>This is the footer!</p>
+        <div className='container'>
+        <p id='footer'>This is the footer!</p>
+        </div>
     )
 }
 
