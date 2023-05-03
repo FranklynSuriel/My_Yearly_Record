@@ -1,3 +1,7 @@
+:root {
+blue: #0000ff;
+}
+
 body {
   background: rgb(162,30,149);
   background: linear-gradient(0deg, rgba(162,30,149,1) 19%, rgba(222,199,251,1) 89%);
@@ -5,4 +9,22 @@ body {
   height: 100vh;
   /* background-repeat: no-repeat; */
 }
+h1 {
+font-family: 'BioRhyme', serif;
+font-size: 50px;
+color: #0000ff;
+display: flex;
+justify-content: center;
+}
+.nav {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav-link {
+  color:black;
+  font-size: 30px;
+}
+
 

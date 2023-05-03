@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 // import styled from 'styled-components'
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import ToggleSwitch from './toggleSwitch';
 // import Auth from '../utils/auth';
 
 // function NavBar({ currentPage, handlePageChange }) {
@@ -73,48 +74,51 @@ import { Link} from 'react-router-dom';
 
 //             export default NavBar;
 function NavBar({ currentPage, handlePageChange }) {
-    return (
-          <nav className="menu">
-  
-  <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <a href='#home'
-            onClick={() => handlePageChange('Home')}
-            className={currentPage === 'Home' ? 'nav-link active' : 'nav-link'}
-          >
-            
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            href="#search"
-            onClick={() => handlePageChange('Search')}
-            className={currentPage === 'Search' ? 'nav-link active' : 'nav-link'}
-          >
-            Search
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            href="#profile"
-            onClick={() => handlePageChange('Profile')}
-            className={currentPage === 'Profile' ? 'nav-link active' : 'nav-link'}
-          >
-            Profile
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            href="#friends"
-            onClick={() => handlePageChange('Friends')}
-            className={currentPage === 'Friends' ? 'nav-link active' : 'nav-link'}
-          >
-            Friends?
-          </a>
-        </li>
-      </ul>
-      </nav>
+    return(
+        <nav className="menu">
+            <h1 id='title'>My Yearly Record</h1>
+            <ToggleSwitch />
+            <ul className="nav nav-tabs">
+                <li className="nav-item">
+                    <a href='#home'
+                        onClick={() => handlePageChange('Home')}
+                        className={currentPage === 'Home' ? 'nav-link active' : 'nav-link'}
+                    >
+
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a
+                        href="#search"
+                        onClick={() => handlePageChange('Search')}
+                        className={currentPage === 'Search' ? 'nav-link active' : 'nav-link'}
+                    >
+                        Search
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a
+                        href="#profile"
+                        onClick={() => handlePageChange('Profile')}
+                        className={currentPage === 'Profile' ? 'nav-link active' : 'nav-link'}
+                    >
+                        Profile
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a
+                        href="#friends"
+                        onClick={() => handlePageChange('Friends')}
+                        className={currentPage === 'Friends' ? 'nav-link active' : 'nav-link'}
+                    >
+                        Friends?
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+
     );
-  }
-  
-  export default NavBar;
+}
+
+export default NavBar;
