@@ -23,7 +23,8 @@ const typeDefs = gql`
         title: String
         image: String
         link: String
-        bookComments: [Comments]        
+        bookComments: [Comments]
+        
     }
 
     input BookInput {
