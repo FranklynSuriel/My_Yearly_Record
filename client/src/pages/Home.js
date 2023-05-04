@@ -5,7 +5,12 @@ import Footer from '../components/Footer';
 import Search from './Search';
 import Profile from './Profile';
 import Landing from './Landing';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { render } from "react-dom";
 
+
+
+  
 export default function App() {
 
   const [currentPage, setCurrentPage] = useState('');
@@ -28,7 +33,7 @@ export default function App() {
   return (
     <div className='App'>
     <NavBar currentPage={currentPage} handlePageChange={handlePageChange} />
-    <Landing />
+    {/* <Landing /> */}
     {renderPage()}
     <br />
     <Footer />
