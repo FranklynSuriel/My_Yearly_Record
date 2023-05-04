@@ -12,7 +12,7 @@ function NavBar() {
             <h1 id='title'>My Yearly Record</h1>
             <ToggleSwitch />
             <button>Login</button>
-            <button>Signup</button>
+            <button>Sign-up</button>
             <ul className="nav nav-tabs">
                 <li className="nav-item">
                 <Link to="/search">Search</Link>
