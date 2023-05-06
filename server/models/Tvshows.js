@@ -11,11 +11,20 @@ const tvShowsSchema = new Schema({
     },
     poster: {
         type: String,
-    },    
+    },
     tvShowsId: {
         type: String,
         required: true,
     },
+    tvShowsStatus: {
+        type: String,
+    },
+    tvShowsComments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Comments'
+        },
+    ],
 });
 
 module.exports = tvShowsSchema;

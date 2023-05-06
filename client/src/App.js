@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import Search from './pages/Search';
 import NavBar from './components/navBar';
 import Landing from './pages/Landing';
-import Signup from './components/Signup.js';
+import Signup from './components/Signup.Js';
 
 const client = new ApolloClient({
   uri: '/graphql',
