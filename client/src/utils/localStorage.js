@@ -27,34 +27,34 @@ export const removeReadBookIds = (bookId) => {
     return true;
 };
 
-export const getWantToReadBookIds = () => {
-    const savedBookIds = localStorage.getItem('saved_want_to_read_books')
-    ? JSON.parse(localStorage.getItem('saved_want_to_read_books'))
-    : []
+// export const getWantToReadBookIds = () => {
+//     const savedBookIds = localStorage.getItem('saved_want_to_read_books')
+//     ? JSON.parse(localStorage.getItem('saved_want_to_read_books'))
+//     : []
 
-    return savedBookIds
-}
+//     return savedBookIds
+// }
 
-export const saveWantToReadBookIds = (bookIdArr) => {
-    if (bookIdArr.length) {
-        localStorage.setItem('saved_want_to_read_books', JSON.stringify(bookIdArr))
-    }
-}
+// export const saveWantToReadBookIds = (bookIdArr) => {
+//     if (bookIdArr.length) {
+//         localStorage.setItem('saved_want_to_read_books', JSON.stringify(bookIdArr))
+//     }
+// }
 
-export const removeWantToReadBookIds = (bookId) => {
-    const savedBookIds = localStorage.getItem('saved_want_to_read_books')
-    ? JSON.parse(localStorage.getItem('saved_want_to_read_books'))
-    : null;
+// export const removeWantToReadBookIds = (bookId) => {
+//     const savedBookIds = localStorage.getItem('saved_want_to_read_books')
+//     ? JSON.parse(localStorage.getItem('saved_want_to_read_books'))
+//     : null;
 
-    if (!savedBookIds) {
-        return false;
-    }
+//     if (!savedBookIds) {
+//         return false;
+//     }
 
-    const updatedSavedBookIds = savedBookIds?.filter((savedBookId)=> savedBookId !== bookId);
-    localStorage.setItem('saved_want_to_read_books', JSON.stringify(updatedSavedBookIds))
+//     const updatedSavedBookIds = savedBookIds?.filter((savedBookId)=> savedBookId !== bookId);
+//     localStorage.setItem('saved_want_to_read_books', JSON.stringify(updatedSavedBookIds))
 
-    return true;
-};
+//     return true;
+// };
 
 export const getWatchedShowIds = () => {
     const savedShowIds = localStorage.getItem('saved_watched_shows')
@@ -66,7 +66,7 @@ export const getWatchedShowIds = () => {
 
 export const saveWatchedShowIds = (showIdArr) => {
     if (showIdArr.length) {
-        localStorage.setItem('saved_watched_shows', JSON.stringify(bookIdArr))
+        localStorage.setItem('saved_watched_shows', JSON.stringify(showIdArr))
     }
 }
 
@@ -85,32 +85,32 @@ export const removeWatchedShowIds = (showId) => {
     return true;
 };
 
-export const getWantToWatchShowIds = () => {
-    const savedShowIds = localStorage.getItem('saved_want_to_watch_shows')
-    ? JSON.parse(localStorage.getItem('saved_want_to_watch_shows'))
-    : []
+// export const getWantToWatchShowIds = () => {
+//     const savedShowIds = localStorage.getItem('saved_want_to_watch_shows')
+//     ? JSON.parse(localStorage.getItem('saved_want_to_watch_shows'))
+//     : []
 
-    return savedShowIds
-}
+//     return savedShowIds
+// }
 
-export const saveWantToWatchShowIds = (showIdArr) => {
-    if (showIdArr.length) {
-        localStorage.setItem('saved_want_to_watch_shows', JSON.stringify(showIdArr))
-    }
-}
+// export const saveWantToWatchShowIds = (showIdArr) => {
+//     if (showIdArr.length) {
+//         localStorage.setItem('saved_want_to_watch_shows', JSON.stringify(showIdArr))
+//     }
+// }
 
-export const removeWantToWatchShowIds = (showId) => {
-    const savedShowIds = localStorage.getItem('saved_want_to_watch_shows')
-    ? JSON.parse(localStorage.getItem('saved_want_to_watch_shows'))
-    : null;
+// export const removeWantToWatchShowIds = (showId) => {
+//     const savedShowIds = localStorage.getItem('saved_want_to_watch_shows')
+//     ? JSON.parse(localStorage.getItem('saved_want_to_watch_shows'))
+//     : null;
 
-    if (!savedShowIds) {
-        return false;
-    }
+//     if (!savedShowIds) {
+//         return false;
+//     }
 
-    const updatedSavedShowIds = savedShowIds?.filter((savedShowId)=> savedShowId !== showId);
-    localStorage.setItem('saved_want_to_watch_shows', JSON.stringify(updatedSavedShowIds))
+//     const updatedSavedShowIds = savedShowIds?.filter((savedShowId)=> savedShowId !== showId);
+//     localStorage.setItem('saved_want_to_watch_shows', JSON.stringify(updatedSavedShowIds))
 
-    return true;
-};
+//     return true;
+// };
 

@@ -32,8 +32,50 @@ mutation SavedBook($bookData: BookInput!) {
         bookId
         description
         image
-        link
         title
+        bookStatus
+        }
+    }
+}
+`;
+
+export const REMOVE_BOOK = gql`
+mutation RemoveBook($bookData: BookInput!) {
+    removeBook(bookData: $bookData) {
+        removeBooks {
+            authors
+            bookId
+            description
+            image
+            title
+            bookStatus
+        }
+    }
+}
+`;
+export const SAVED_SHOW = gql`
+mutation SavedShow($showData: ShowInput!) {
+    savedShow(showData: $showData) {
+        savedShows {
+        name
+        overview
+        poster
+        tvShowsId
+        tvShowStatus
+        }
+    }
+}
+`;
+
+export const REMOVE_SHOW = gql`
+mutation RemoveShow($showData: ShowInput!) {
+    savedShow(showData: $showData) {
+        savedShows {
+        name
+        overview
+        poster
+        tvShowsId
+        tvShowStatus
         }
     }
 }
