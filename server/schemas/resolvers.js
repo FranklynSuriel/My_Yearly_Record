@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Book, TvShows, Friends } = require('../models');
+const { User } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -105,12 +105,40 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        // Not working
-        bookComments: async (parents, { comments, bookId }, context) => {
-            console.log(bookId)
-            console.log(comments)
+        // working
+        bookCommentsCreate: async (parents, { comments, bookId }, context) => {
+            if (!context.user) {
+                throw new Error('User not authenticated');
+            }
+
+            const userId = context.user._id;
+
+            try {
+                const updateUser = await User.findOneAndUpdate(
+                    {
+                        _id: userId,
+                        "savedBooks.bookId": bookId
+                    },
+                    {
+                        $push: { "savedBooks.$[book].bookComments": { comments, userId: context.user._id } }
+                    },
+                    {
+                        new: true,
+                        runValidators: true,
+                        arrayFilters: [
+                            { "book.bookId": bookId }
+                        ]
+                    }
+                );
+                console.log(updateUser)
+                return updateUser
+            } catch (error) {
+                console.log(error)
+            }
+
+        },
+        removeBookComment: async (parents, { bookId, _id }, context) => {
             if (context.user) {
-                console.log("hello from inside bookComments")
                 try {
                     const updateUser = await User.findOneAndUpdate(
                         {
@@ -118,15 +146,42 @@ const resolvers = {
                             "savedBooks.bookId": bookId
                         },
                         {
-                            $push: { "savedBooks.$[book].comments": comments }
+                            $pull: { "savedBooks.$.bookComments": { _id } }
                         },
-                        {
-                            new: true,
-                            runValidators: true,
-                            arrayFilters: [
-                                { "book.bookId": bookId }
-                            ]
-                        }
+                        { new: true }
+                    );
+                    console.log(updateUser)
+                    return updateUser;
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        },
+        addFriend: async (parents, { Friend }, context) => {
+            console.log(Friend)
+            if (context.user) {
+                console.log("inside if")
+                try {
+                    const updateUser = await User.findOneAndUpdate(
+                        { _id: context.user._id },
+                        { $addToSet: { savedFriends: Friend } },
+                        { new: true, runValidators: true }
+                    );
+                    console.log(updateUser)
+                    return updateUser
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        },
+        removeFriends: async ( parent, { Friend }, context) => {
+            if (context.user) {
+                console.log("inside if")
+                try {
+                    const updateUser = await User.findOneAndUpdate(
+                        { _id: context.user._id },
+                        { $pull: { savedFriends: Friend } },
+                        { new: true, runValidators: true }
                     );
                     console.log(updateUser)
                     return updateUser
