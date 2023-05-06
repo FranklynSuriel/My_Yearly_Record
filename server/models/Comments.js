@@ -1,15 +1,17 @@
 const { Schema } = require('mongoose');
 
 const commentsSchema = new Schema({
-    comments:[
+    comments: [
         {
             type: String
         },
     ],
-    userId: {
-        type: String,
-        require: true,
-    }
+    userId: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+    ],    
 });
 
 module.exports = commentsSchema;
