@@ -10,30 +10,29 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        bookCount: Int
         savedBooks: [Books]!
         savedTvShows: [TvShows]!
-        savedFriends: [Friends]
+        savedFriends: [Friends]!
     }
 
     type Books {
-        bookId: String
         authors: [String]
-        description: String
         title: String
+        description: String
         image: String
-        link: String
-        bookComments: [Comments]
+        bookStatus: String
+        bookId: String
+        bookComments: [Comments]!
         
     }
 
     input BookInput {
-        bookId: String
         authors: [String]
-        description: String
         title: String
+        description: String
+        bookId: String
         image: String
-        link: String
+        bookStatus: String
     }
 
     type TvShows {
@@ -41,25 +40,26 @@ const typeDefs = gql`
         overview: String
         poster: String
         tvShowsId: String
-        tvShowsComments: [Comments]
+        tvShowsStatus: String
+        tvShowsComments: [Comments]!
     }
 
     input TvShowInput {
-        tvShowsId: String
         name: String
         overview: String
         poster: String
+        tvShowsId: String
+        tvShowsStatus: String
     }
 
     type Comments {
         comments: [String]
-        userId: String
-        commentsId: String
+        userId: [User]!
     }
     
     type Friends {
         username: [String]
-        userId: String
+        userId: [User]!
     }
     
     type Auth {
@@ -71,16 +71,16 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-        savedBook(bookData: BookInput!): User
+        savedBooks(bookData: BookInput!): User
         removeBook(bookId: String!): User
 
         savedTvShows(TvShowsData: TvShowInput!): User
         removeTvShows(tvShowsId: String!): User
 
-        addComments( comments: String!, userId: String!): User
-        removeComments(commentsId: String!): User
+        bookComments( comments: String!, bookId: ID!): User
+        removeBookComments(commentsId: String!): User
 
-        addFriends( username: String!): User
+        savedFriends( username: String!): User
         removeFriends(friendId: ID!): User
     }
 `;
