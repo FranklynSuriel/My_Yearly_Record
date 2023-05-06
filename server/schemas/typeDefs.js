@@ -53,13 +53,19 @@ const typeDefs = gql`
     }
 
     type Comments {
+        _id: ID!
         comments: [String]
         userId: [User]!
     }
     
     type Friends {
-        username: [String]
-        userId: [User]!
+        _id: ID!
+        username: String
+        
+    }
+
+    input FriendInput {
+        username: String!
     }
     
     type Auth {
@@ -77,11 +83,11 @@ const typeDefs = gql`
         savedTvShows(TvShowsData: TvShowInput!): User
         removeTvShows(tvShowsId: String!): User
 
-        bookComments( comments: String!, bookId: ID!): User
-        removeBookComments(commentsId: String!): User
+        bookCommentsCreate( comments: String!, bookId: String!): User
+        removeBookComment( bookId: String!, _id: ID!): User
 
-        savedFriends( username: String!): User
-        removeFriends(friendId: ID!): User
+        addFriend( Friend: FriendInput!): User
+        removeFriends( Friend: FriendInput!): User
     }
 `;
 

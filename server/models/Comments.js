@@ -3,13 +3,15 @@ const { Schema } = require('mongoose');
 const commentsSchema = new Schema({
     comments: [
         {
-            type: String
+            type: String,
+            required: true 
         },
     ],
     userId: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            require: true
         },
     ],    
 });
