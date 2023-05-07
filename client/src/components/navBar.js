@@ -1,37 +1,51 @@
 import React, { useState } from 'react';
-// import styled from 'styled-components'
-import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import { Navbar, Nav, Container, Tab } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import ToggleSwitch from './toggleSwitch';
-//
+// import ToggleSwitch from './toggleSwitch';
+import { Button, Space } from 'antd';
+import Modal from './Modal';
+import SignUpModal from './SignUpModal';
+import Auth from '../utils/auth';
+
 
 
 function NavBar() {
-    return(
-        <nav className="menu">
+    const [openModal, setOpenModal] = useState(false);
+    const [openSignModal, setOpenSignModal] = useState(false);
+    return (
+        <Navbar className="menu">
             <h1 id='title'>My Yearly Record</h1>
-            <ToggleSwitch />
-            <button>Login</button>
-            <button>Sign-up</button>
             <ul className="nav nav-tabs">
                 <li className="nav-item">
-                <Link to="/search">Search</Link>
+                    <Link to="/search"> Search </Link>
                 </li>
                 <li className="nav-item">
                     {/* //     onClick={() => handlePageChange('Search')}
                     //     className={currentPage === 'Search' ? 'nav-link active' : 'nav-link'} */}
                 </li>
                 <li className="nav-item">
-                   <Link to="/profiles/:profileId">Profile</Link>                                   
+                    <Link to="/profiles/:profileId"> Profile </Link>
                 </li>
                 <li className="nav-item">
-                <Link to="/">Friends</Link>
+                    <Link to="/"> Friends </Link>
                 </li>
             </ul>
-        </nav>
-        
+            <Space wrap>
+                <Button type='dashed' className="openModalBtn" onClick={() => {
+                    setOpenModal(true);
+                }}>Login</Button>
+                {openModal && <Modal closeModal={setOpenModal} />}
+
+                <Button type='dashed' className="openModalBtn" onClick={() => {
+                    setOpenSignModal(true);
+                }}>Sign-Up</Button>
+                {openSignModal && <SignUpModal closeModal={setOpenSignModal} />}
+            </Space>
+        </Navbar>
+
 
     );
 }
 
 export default NavBar;
+// 

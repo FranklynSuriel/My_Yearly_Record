@@ -1,17 +1,26 @@
 :root {
-blue: #0000ff;
+--blue: #0000ff;
+--jadeite: #00A36C;
 }
 
 body {
-  background: rgb(162,30,149);
-  background: linear-gradient(0deg, rgba(162,30,149,1) 19%, rgba(222,199,251,1) 89%);
+  /* background: rgb(162,30,149);
+  background: linear-gradient(0deg, rgba(162,30,149,1) 19%, rgba(222,199,251,1) 89%); */
+  background: rgb(43,242,172);
+  background: linear-gradient(0deg, rgba(43,242,172,1) 24%, rgba(252,189,96,0.9178265056022409) 90%);
   background-size: cover;
-  height: 100vh;
+  height: auto;
+  min-height: 100%;
   /* background-repeat: no-repeat; */
-}
+ }
+
+ .navbar {
+  display:flex;
+  justify-content: space-around;
+ }
 h1 {
-font-family: 'BioRhyme', serif;
-font-size: 50px;
+font-family: 'Inter', sans-serif;
+font-size: 55px;
 color: #0000ff;
 display: flex;
 justify-content: center;
@@ -22,9 +31,76 @@ justify-content: center;
   justify-content: flex-end;
 }
 
-nav-link {
-  color:black;
-  font-size: 30px;
+.nav-tabs {
+  font-size: 20px;
+
 }
+.openModalBtn {
+  background-color: var(--jadeite);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+
+}
+.container-box {
+  border:4px solid black;
+  background-color: white; 
+  display: flex;
+  justify-content: space-around;
+}  
+
+.container-landing {
+  display:grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: fit-content(50%) fit-content(50%);
+}
+
+.landing-item1 {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  border: 4px solid black;
+  border-radius: 10px;
+  margin: 3px;
+  padding: 2px;
+  background-color: antiquewhite;
+  font-size: 24px;
+}
+.landing-item2 {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  border: 4px solid black;
+  margin: 4px;
+  height: 400px;
+  width: auto;
+  border-radius: 25px;
+}
+
+.landing-item3 {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  border: 4px solid black;
+  padding: 2px;
+  margin: 3px;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  font-size: 14px;
+}
+
+.footer {
+  position: absolute;
+  right: 50%;
+  bottom:0;
+  /* padding-bottom: 4px; */
+}
+
+
+
+
+
 
 
