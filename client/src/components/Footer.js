@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+import {
+    HomeOutlined,    
+    SmileOutlined
+  } from '@ant-design/icons';
+  import { Space } from 'antd';
 
 
 function Footer(){
     return (
-        <div className='container'>
-        <p id='footer'>This is the footer!</p>
+        <div className='footer'>
+            <Space>
+            <HomeOutlined href="/" />
+            <SmileOutlined />
+            </Space>
         </div>
     )
 }
