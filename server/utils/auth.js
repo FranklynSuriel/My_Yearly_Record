@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 
 // set token secret and expiration date
 const secret = 'process.env.SESSION_SECRET';
+// const tvShow = 'process.env.API_KEY';
 const expiration = '2h';
 
 module.exports = {
@@ -29,7 +30,9 @@ module.exports = {
       // return res.status(400).json({ message: 'invalid token!' });
     }
 
-    return req;
+
+
+    return req
   },
   signToken: function ({ username, email, _id }) {
     const payload = { username, email, _id };
