@@ -1,42 +1,38 @@
+import React from 'react';
+// import { useQuery } from '@apollo/client';
 
-import React, { useState } from 'react';
-import NavBar from '../components/navBar';
-import Footer from '../components/Footer';
-import Search from './Search';
-import Profile from './Profile';
-import Landing from './Landing';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import { render } from "react-dom";
+// import ThoughtList from '../components/ThoughtList';
+// import ThoughtForm from '../components/ThoughtForm';
 
+// import { QUERY_THOUGHTS } from '../utils/queries';
 
-
-  
-export default function App() {
-
-  const [currentPage, setCurrentPage] = useState('');
-  
-  const renderPage = () => {
-    if (currentPage === 'Landing') {
-      return <Landing />;
-    }
-    if (currentPage === 'Profile') {
-      return <Profile />;
-    }
-    if (currentPage === 'Search') {
-      return <Search />;
-    }
-    // return <Resume />;
-  };
-
-  const handlePageChange = (page) => setCurrentPage(page);
+const Home = () => {
+  // const { loading, data } = useQuery(QUERY_THOUGHTS);
+  // const thoughts = data?.thoughts || [];
 
   return (
-    <div className='App'>
-    <NavBar currentPage={currentPage} handlePageChange={handlePageChange} />
-    {/* <Landing /> */}
-    {renderPage()}
-    <br />
-    <Footer />
-    </div>
+    <main>
+      <h3>Hello from Home</h3>
+      {/* <div className="flex-row justify-center">
+        <div
+          className="col-12 col-md-10 mb-3 p-3"
+          style={{ border: '1px dotted #1a1a1a' }}
+        >
+          <ThoughtForm />
+        </div>
+        <div className="col-12 col-md-8 mb-3">
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <ThoughtList
+              thoughts={thoughts}
+              title="Some Feed for Thought(s)..."
+            />
+          )}
+        </div>
+      </div> */}
+    </main>
   );
-}
+};
+
+export default Home;

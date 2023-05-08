@@ -19,11 +19,12 @@ const resolvers = {
         addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
 
-            const correctPwd = await user.isCorrectPassword(password);
+            // const correctPwd = await user.isCorrectPassword(password);
 
-            if (!correctPwd) {
-                throw new AuthenticationError('Wrong username or password!');
-            }
+            // if (!correctPwd) {
+            //     throw new AuthenticationError('Wrong username or password!');
+            // }
+            
             const token = signToken(user);
             return { token, user };
         },
