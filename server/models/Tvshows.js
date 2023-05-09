@@ -28,5 +28,5 @@ const tvShowsSchema = new Schema({
     ],
 });
 
-// export module
+// export module tvShowSchema
 module.exports = tvShowsSchema;
