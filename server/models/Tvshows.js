@@ -1,5 +1,6 @@
 const { Schema } = require('mongoose');
 
+// create tv show schema
 const tvShowsSchema = new Schema({
     name: {
         type: String,
@@ -27,4 +28,5 @@ const tvShowsSchema = new Schema({
     ],
 });
 
+// export module
 module.exports = tvShowsSchema;
