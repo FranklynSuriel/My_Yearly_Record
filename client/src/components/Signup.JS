@@ -45,7 +45,7 @@ const Signup = () => {
 
         } catch (err) {
             console.error(err);
-            setShowAlert(true);
+            // setShowAlert(true);
         }
 
         setUserFormData({
