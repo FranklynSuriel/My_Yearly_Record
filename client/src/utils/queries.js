@@ -42,9 +42,17 @@ export const QUERY_ME = gql`
 export const QUERY_USERS = gql`
 query Users {
     users {
-        _id
         username
         email
+        savedBooks {
+            title
+        }
+        savedTvShows {
+            name
+        }
+        savedFriends {
+        username
+        }
     }
 }
 `

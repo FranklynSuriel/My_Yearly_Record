@@ -114,8 +114,9 @@ mutation GetAllUsers {
 export const ADD_FRIEND = gql`
 mutation AddFriend($friend: FriendInput!) {
     addFriend(Friend: $friend) {
-        savedFriends {
         username
+        savedFriends {
+            username
         }
     }
 }

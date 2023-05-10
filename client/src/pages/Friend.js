@@ -1,20 +1,47 @@
 import React from "react";
-import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
-import { Navigate, useParams } from 'react-router-dom';
-import Auth from '../utils/auth';
-import { useQuery } from "@apollo/client";
+import { Container, Card } from "react-bootstrap";
+// import { Navigate, useParams } from 'react-router-dom';
+// import Auth from '../utils/auth';
+import { useQuery, useMutation, gql } from "@apollo/client";
 import { QUERY_USERS } from "../utils/queries";
+import { ADD_FRIEND } from "../utils/mutations"
+
+
+
 
 const Friends = () => {
 
-    const { loading, data } = useQuery(QUERY_USERS)
+    const { loading, data, error } = useQuery(QUERY_USERS);
+    const [saveFriend, { loading: savingFriend }] = useMutation(ADD_FRIEND);
 
-    // const user = data?.user || {};
-    
+    const handleSaveFriend = (username, friendUsername) => {
+        saveFriend({
+            variables: { username, friendUsername },
+            update: (cache, { data: { saveFriend } }) => {
+                cache.modify({
+                    fields: {
+                        users(existingUsers = []) {
+                            const newFriendRef = cache.writeFragment({
+                                data: saveFriend,
+                                fragment: gql`
+                                fragment NewFriend on User {
+                                    savedFriends {
+                                        username
+                                    }
+                                }`
+                            });
+                            return [existingUsers, newFriendRef];
+                        }
+                    }
+                });
+            }
+        });
+    };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
+    console.log(data)
 
     return (
         <>
@@ -23,15 +50,26 @@ const Friends = () => {
                     <h1>All Users</h1>
                     <ul>
                         {data.users.map((user) => (
-                            <Container className="d-flex flex-wrap flex-column">
                             <Card border="dark" >
-                            <Card.Body key={user.id} border="dark" >
-                            <Card.Title>{user.username}</Card.Title>
-										<p className="small">Email: {user.email}</p>
-										{/* <Card.Text style={{maxHeight: "75px", overflowY: "auto"}}>{user.email}</Card.Text> */}
-										{/* {Auth.loggedIn() && (
+                                <Card.Body key={user.username} border="dark" >
+                                    <Card.Title>{user.username}</Card.Title>
+                                    <p>
+                                        <strong> Book lists: </strong> {user.savedBooks.slice(0, 5).map((book) => book.title).join(", ") || ["No books to display."]}
+                                    </p>
+                                    <p>
+                                        <strong>TV Show lists:</strong> {user.savedTvShows.map((show) => show.name).join(", ") || ["No tv shows to display."]}
+                                    </p>
+                                    <p>
+                                        <strong>Friends:</strong> {user.savedFriends.map((friend) => friend.username).join(", ") || ["No friends to display."]}
+                                    </p>
+                                    {/* {user.username !== loggedInUser.username && (
+                                        <button onClick={() => handleSaveFriend(loggedInUser.username, user.username)}>
+                                            {savingFriend ? "Saving friend..." : "Save friend"}
+                                        </button>
+                                    )} */}
+                                    {/* {Auth.loggedIn() && (
 											<Button
-												disabled={saveReadBookIds?.some(
+												disabled={savedReadBookIds?.some(
 													(savedBookId) => savedBookId === book.bookId
 												)}
 												className="btn-block btn-info"
@@ -45,9 +83,8 @@ const Friends = () => {
 											</Button>
 										)} */}
 
-                            </Card.Body>
-                           </Card>
-                           </Container>
+                                </Card.Body>
+                            </Card>
                         ))}
                     </ul>
                 </div>
