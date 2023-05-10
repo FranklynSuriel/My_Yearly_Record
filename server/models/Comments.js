@@ -7,13 +7,13 @@ const commentsSchema = new Schema({
             required: true 
         },
     ],
-    userId: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            require: true
-        },
-    ],    
+    // userId: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'User',
+    //         require: true
+    //     },
+    // ],    
 });
 
 module.exports = commentsSchema;

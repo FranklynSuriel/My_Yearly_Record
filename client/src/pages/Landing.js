@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import vintage from '../assets/images/francisco-andreotti-MwrpaS_6f2U-unsplash.jpg';
 
 function Landing() {

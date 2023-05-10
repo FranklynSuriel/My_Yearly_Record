@@ -166,6 +166,8 @@ export const SearchBooks = () => {
 	);
 };
 
+export default SearchBooks;
+
 export const SearchShows = () => {
 	const [searchedShows, setSearchedShows] = useState([]);
 	const [searchInput, setSearchInput] = useState("");
