@@ -25,15 +25,15 @@ mutation Login($email: String!, $password: String!) {
 `;
 
 export const SAVED_BOOK = gql`
-mutation SavedBook($bookData: BookInput!) {
-    savedBook(bookData: $bookData) {
+mutation SavedBooks($bookData: BookInput!) {
+    savedBooks(bookData: $bookData) {
         savedBooks {
-        authors
-        bookId
-        description
-        image
-        title
-        bookStatus
+            authors
+            bookId
+            bookStatus
+            description
+            image
+            title 
         }
     }
 }
@@ -45,23 +45,23 @@ mutation RemoveBook($bookData: BookInput!) {
         removeBooks {
             authors
             bookId
+            bookStatus
             description
             image
             title
-            bookStatus
         }
     }
 }
 `;
 export const SAVED_SHOW = gql`
-mutation SavedShow($showData: ShowInput!) {
-    savedShow(showData: $showData) {
-        savedShows {
-        name
-        overview
-        poster
-        tvShowsId
-        tvShowStatus
+mutation SavedTvShows($tvShowsData: TvShowInput!) {
+    savedTvShows(TvShowsData: $tvShowsData) {
+        savedTvShows {
+            name
+            overview
+            poster
+            tvShowsId
+            tvShowsStatus
         }
     }
 }
@@ -76,9 +76,58 @@ mutation RemoveShow($showData: ShowInput!) {
         poster
         tvShowsId
         tvShowStatus
-
- 
         }
     }
 }
 `;
+
+export const GET_ALL_USERS = gql`
+mutation GetAllUsers {
+    getAllUsers {
+        _id
+        email
+        username
+        savedBooks {
+            bookId
+            title
+            bookComments {
+                _id
+                comments
+            }
+        }
+        savedFriends {
+            _id
+            username
+        }
+        savedTvShows {
+            tvShowsId
+            name
+            tvShowsComments {
+            _id
+            comments
+            }
+        }
+    }
+}
+`;
+
+export const ADD_FRIEND = gql`
+mutation AddFriend($friend: FriendInput!) {
+    addFriend(Friend: $friend) {
+        savedFriends {
+        username
+        }
+    }
+}
+`;
+
+export const REMOVE_FRIEND = gql`
+mutation RemoveFriends($friend: FriendInput!) {
+    removeFriends(Friend: $friend) {
+        savedFriends {
+        username
+        }
+    }
+}
+`;
+
