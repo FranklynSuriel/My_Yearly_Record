@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 // import { Navigate, useParams } from 'react-router-dom';
 // import Auth from '../utils/auth';
 import { useQuery, useMutation, gql } from "@apollo/client";
