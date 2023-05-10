@@ -15,7 +15,8 @@ import Login from './pages/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Friend from './pages/Friend'
-import Search from './pages/Search';
+import {SearchShows} from './pages/Search';
+import {SearchBooks} from './pages/Search';
 // import NavBar from './components/navBar';
 
 
@@ -69,7 +70,11 @@ function App() {
 							/>
 							<Route
 								path="/search"
-								element={<Search />}
+								element={<SearchShows />}
+							/>
+							<Route
+								path="/searchbook"
+								element={<SearchBooks />}
 							/>
 						</Routes>
 					</div>
