@@ -13,6 +13,9 @@ const resolvers = {
             }
             throw new AuthenticationError('Not logged in');
         },
+        users: async () => {
+            return User.find();
+        },
     },
     Mutation: {
         // working
@@ -24,7 +27,7 @@ const resolvers = {
             // if (!correctPwd) {
             //     throw new AuthenticationError('Wrong username or password!');
             // }
-            
+
             const token = signToken(user);
             return { token, user };
         },
@@ -43,6 +46,15 @@ const resolvers = {
             }
             const token = signToken(user);
             return { token, user };
+        },
+        getAllUsers: async (parent, args, context) => {
+            try {
+                const users = await User.find();
+                return users;
+            } catch (err) {
+                console.log(err);
+                throw new Error('Failed to fetch users');
+            }
         },
         // working
         savedBooks: async (parents, { bookData }, context) => {
@@ -175,7 +187,7 @@ const resolvers = {
                 }
             }
         },
-        removeFriends: async ( parent, { Friend }, context) => {
+        removeFriends: async (parent, { Friend }, context) => {
             if (context.user) {
                 console.log("inside if")
                 try {

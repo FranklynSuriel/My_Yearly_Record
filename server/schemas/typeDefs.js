@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type Query {
         me: User
+        users: [User]
     }
     type User {
         _id: ID
@@ -54,7 +55,7 @@ const typeDefs = gql`
     type Comments {
         _id: ID!
         comments: [String]
-        userId: [User]!
+        
     }
     
     type Friends {
@@ -76,17 +77,19 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-        savedBooks(bookData: BookInput!): User
+        getAllUsers: [User!]!
+
+        savedBooks(bookData: BookInput!): String
         removeBook(bookId: String!): User
 
-        savedTvShows(TvShowsData: TvShowInput!): User
+        savedTvShows(TvShowsData: TvShowInput!): String
         removeTvShows(tvShowsId: String!): User
 
-        bookCommentsCreate( comments: String!, bookId: String!): User
-        removeBookComment( bookId: String!, _id: ID!): User
+        bookCommentsCreate( comments: String!, bookId: String!): String
+        removeBookComment( bookId: String!, _id: ID!): String
 
-        addFriend( Friend: FriendInput!): User
-        removeFriends( Friend: FriendInput!): User
+        addFriend( Friend: FriendInput!): String
+        removeFriends( Friend: FriendInput!): String
     }
 `;
 
