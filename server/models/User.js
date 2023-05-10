@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 // // import schema from Book.js
 const bookSchema = require('./Book');
-const tvShowsSchema = require('./TvShows')
+const tvShowsSchema = require('./Tvshows')
 const friendsSchema = require('./Friends')
 
 const userSchema = new Schema(
