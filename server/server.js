@@ -25,6 +25,12 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+app.get('/api/environment', (req, res) => {
+  const SHOW_API_KEY = process.env.API_KEY;
+  const responseData =  SHOW_API_KEY ;
+  res.json(responseData);
+});
+
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
