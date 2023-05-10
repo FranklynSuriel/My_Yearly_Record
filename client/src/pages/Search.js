@@ -201,7 +201,7 @@ export const SearchShows = () => {
 			console.log(response);
 			console.log(typeof response);
 
-			const showData = response.map((show) => ({
+			const showData = response.results.map((show) => ({
 				tvShowsId: show.id,
 				name: show.name,
 				overview: show.overview,
