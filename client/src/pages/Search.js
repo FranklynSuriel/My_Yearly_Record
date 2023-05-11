@@ -47,7 +47,7 @@ export const SearchBooks = () => {
 				bookId: book.id,
 				authors: book.volumeInfo.authors || ["No author to display"],
 				title: book.volumeInfo.title,
-				description: book.volumeInfo.description,
+				description: book.volumeInfo.description || "No description provided",
 				image: book.volumeInfo.imageLinks?.thumbnail || "",
 			}));
 
@@ -62,7 +62,7 @@ export const SearchBooks = () => {
 
 	const handleSaveBook = async (bookId) => {
 		const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-
+console.log(bookToSave)
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
 
 		if (!token) {
@@ -74,8 +74,8 @@ export const SearchBooks = () => {
 				variables: { bookData: { ...bookToSave } },
 			});
 
-			setReadBookIds([...saveReadBookIds, bookToSave.bookId]);
-			console.log(setReadBookIds);
+			setReadBookIds([...readBookIds, bookToSave.bookId]);
+			saveReadBookIds([...readBookIds, bookToSave.bookId])
 
 			console.log(data);
 		} catch (err) {
@@ -142,13 +142,13 @@ export const SearchBooks = () => {
 										</Card.Text>
 										{Auth.loggedIn() && (
 											<Button
-												disabled={saveReadBookIds?.some(
+												disabled={readBookIds?.some(
 													(savedBookId) => savedBookId === book.bookId
 												)}
 												className="btn-block btn-info"
 												onClick={() => handleSaveBook(book.bookId)}
 											>
-												{saveReadBookIds?.some(
+												{readBookIds?.some(
 													(savedBookId) => savedBookId === book.bookId
 												)
 													? "This book has already been saved!"
@@ -165,8 +165,6 @@ export const SearchBooks = () => {
 		</>
 	);
 };
-
-export default SearchBooks;
 
 export const SearchShows = () => {
 	const [searchedShows, setSearchedShows] = useState([]);
@@ -216,21 +214,28 @@ export const SearchShows = () => {
 		}
 	};
 
-	const handleSaveShow = async (showId) => {
-		const showToSave = searchedShows.find((show) => show.showId === showId);
+	const handleSaveShow = async (tvShowsId) => {
+		console.log(searchedShows)
+		console.log(tvShowsId)
+		const showToSave = searchedShows.find((show) => show.showId === tvShowsId);
+		console.log(showToSave)
 
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+		console.log(token)
 
 		if (!token) {
 			return false;
 		}
 
 		try {
-			const { data } = await saveShowMutation({
+			const {data} = await saveShowMutation({
 				variables: { showData: { ...showToSave } },
 			});
 
-			setWatchedShowIds([...saveWatchedShowIds, showToSave.showId]);
+			setWatchedShowIds([...watchedShowIds, showToSave.tvShowsId]);
+			saveWatchedShowIds([...watchedShowIds, showToSave.tvShowsId])
+
 			console.log(setWatchedShowIds);
 
 			console.log(data);
@@ -323,7 +328,7 @@ export const SearchShows = () => {
 // 	return <p>This is the Search Page!</p>;
 // }
 
-export default {
-    SearchBooks,
-    SearchShows,
-}
+// export default {
+//     SearchBooks,
+//     SearchShows,
+// }
