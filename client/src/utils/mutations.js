@@ -27,6 +27,9 @@ mutation Login($email: String!, $password: String!) {
 export const SAVED_BOOK = gql`
 mutation SavedBooks($bookData: BookInput!) {
     savedBooks(bookData: $bookData) {
+        _id
+        username
+        email
         savedBooks {
             authors
             bookId
@@ -55,7 +58,10 @@ mutation RemoveBook($bookData: BookInput!) {
 `;
 export const SAVED_SHOW = gql`
 mutation SavedTvShows($tvShowsData: TvShowInput!) {
-    savedTvShows(TvShowsData: $tvShowsData) {
+    savedTvShows(tvShowsData: $tvShowsData) {
+        _id
+        username
+        email
         savedTvShows {
             name
             overview

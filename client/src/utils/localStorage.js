@@ -1,14 +1,7 @@
-// export const getReadBookIds = () => {
-//     const savedBookIds = localStorage.getItem('saved_read_books')
-//     ? JSON.parse(localStorage.getItem('saved_read_books'))
-//     : [];
-//     console.log(savedBookIds)
-
-//     return savedBookIds
-    
-// }
 export const getReadBookIds = () => {
     const savedBookIds = localStorage.getItem('saved_read_books');
+
+    console.log(savedBookIds)
   
     if (!savedBookIds) {
       console.log('No saved_read_books item in localStorage');
@@ -25,17 +18,9 @@ export const getReadBookIds = () => {
     }
   };
   
-// export const getReadBookIds = () => {
-//     const savedBookIds = localStorage.getItem('saved_read_books');
-  
-//     if (savedBookIds) {
-//       return JSON.parse(savedBookIds);
-//     } else {
-//       return [];
-//     }
-// }
 
 export const saveReadBookIds = (bookIdArr) => {
+    console.log(bookIdArr)
     if (bookIdArr.length) {
         localStorage.setItem('saved_read_books', JSON.stringify(bookIdArr))
     }
@@ -55,35 +40,6 @@ export const removeReadBookIds = (bookId) => {
 
     return true;
 };
-
-// export const getWantToReadBookIds = () => {
-//     const savedBookIds = localStorage.getItem('saved_want_to_read_books')
-//     ? JSON.parse(localStorage.getItem('saved_want_to_read_books'))
-//     : []
-
-//     return savedBookIds
-// }
-
-// export const saveWantToReadBookIds = (bookIdArr) => {
-//     if (bookIdArr.length) {
-//         localStorage.setItem('saved_want_to_read_books', JSON.stringify(bookIdArr))
-//     }
-// }
-
-// export const removeWantToReadBookIds = (bookId) => {
-//     const savedBookIds = localStorage.getItem('saved_want_to_read_books')
-//     ? JSON.parse(localStorage.getItem('saved_want_to_read_books'))
-//     : null;
-
-//     if (!savedBookIds) {
-//         return false;
-//     }
-
-//     const updatedSavedBookIds = savedBookIds?.filter((savedBookId)=> savedBookId !== bookId);
-//     localStorage.setItem('saved_want_to_read_books', JSON.stringify(updatedSavedBookIds))
-
-//     return true;
-// };
 
 export const getWatchedShowIds = () => {
     const savedShowIds = localStorage.getItem('saved_watched_shows')
@@ -114,32 +70,4 @@ export const removeWatchedShowIds = (showId) => {
     return true;
 };
 
-// export const getWantToWatchShowIds = () => {
-//     const savedShowIds = localStorage.getItem('saved_want_to_watch_shows')
-//     ? JSON.parse(localStorage.getItem('saved_want_to_watch_shows'))
-//     : []
-
-//     return savedShowIds
-// }
-
-// export const saveWantToWatchShowIds = (showIdArr) => {
-//     if (showIdArr.length) {
-//         localStorage.setItem('saved_want_to_watch_shows', JSON.stringify(showIdArr))
-//     }
-// }
-
-// export const removeWantToWatchShowIds = (showId) => {
-//     const savedShowIds = localStorage.getItem('saved_want_to_watch_shows')
-//     ? JSON.parse(localStorage.getItem('saved_want_to_watch_shows'))
-//     : null;
-
-//     if (!savedShowIds) {
-//         return false;
-//     }
-
-//     const updatedSavedShowIds = savedShowIds?.filter((savedShowId)=> savedShowId !== showId);
-//     localStorage.setItem('saved_want_to_watch_shows', JSON.stringify(updatedSavedShowIds))
-
-//     return true;
-// };
 

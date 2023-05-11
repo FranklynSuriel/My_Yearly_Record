@@ -78,10 +78,10 @@ const typeDefs = gql`
 
         getAllUsers: [User!]!
 
-        savedBooks(bookData: BookInput!): String
+        savedBooks(bookData: BookInput!): User
         removeBook(bookId: String!): User
 
-        savedTvShows(TvShowsData: TvShowInput!): String
+        savedTvShows(TvShowsData: TvShowInput!): User
         removeTvShows(tvShowsId: String!): User
 
         bookCommentsCreate( comments: String!, bookId: String!): String
