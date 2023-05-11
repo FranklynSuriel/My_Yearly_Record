@@ -4,6 +4,7 @@
 --liteorange: #FCBD60;
 --green: #2bf2ac;
 --brightorange: #ff4500;
+--pistachio: #a9d39e;
 }
 
 body {
@@ -55,6 +56,7 @@ justify-content: center;
   display:grid;
   grid-template-columns: 60% 40%;
   grid-template-rows: fit-content(50%) fit-content(50%);
+  margin-top: 35px;
 }
 
 .landing-item1 {
@@ -171,10 +173,28 @@ justify-content: center;
 }
 .sign-btn {
   box-shadow: 2px 3px 2px var(--brightorange);
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.submit-btn {
+  background-color: var(--pistachio);
+  font-family: 'Inter', sans-serif;
+  color: var(--brightorange);
 
 }
 
+.search-title {
+  display: flex;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 45px;
+}
 
-
-
-
+#dropdown-basic-button {
+  background-color: var(--liteorange);
+  font-family: 'Inter', sans-serif;
+  border:#BF4D28;
+}
