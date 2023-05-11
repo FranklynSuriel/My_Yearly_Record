@@ -2,14 +2,12 @@
 const getAPIKey = async () => {
   const response = await fetch('/api/environment');
   const data = await response.json();
-  console.log(data)
   return data;
 }
 
 export const searchTMDB = (query) => {
   return getAPIKey()
     .then(apiKey => {
-      console.log(apiKey);
       return fetch(`https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&include_adult=false`)
         .then(response => response.json())
         .then(data => {

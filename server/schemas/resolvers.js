@@ -56,13 +56,13 @@ const resolvers = {
             }
         },
         // working
-        savedBooks: async (parents, { bookData }, context) => {
+        savedBooks: async (parent, { bookData }, context) => {
             console.log(bookData)
             if (context.user) {
                 try {
                     const updateUser = await User.findOneAndUpdate(
                         { _id: context.user._id },
-                        { $addToSet: { savedBooks: bookData } },
+                        { $push: { savedBooks: bookData } },
                         { new: true, runValidators: true }
                     );
                     console.log(updateUser)
@@ -73,7 +73,7 @@ const resolvers = {
             }
         },
         // working
-        removeBook: async (parents, { bookId }, context) => {
+        removeBook: async (parent, { bookId }, context) => {
             console.log(bookId)
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
@@ -87,13 +87,13 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         // working
-        savedTvShows: async (parents, { TvShowsData }, context) => {
+        savedTvShows: async (parent, { TvShowsData }, context) => {
             console.log(TvShowsData)
             if (context.user) {
                 try {
                     const updateUser = await User.findOneAndUpdate(
                         { _id: context.user._id },
-                        { $addToSet: { savedTvShows: TvShowsData } },
+                        { $push: { savedTvShows: TvShowsData } },
                         { new: true, runValidators: true }
                     );
                     console.log(updateUser)

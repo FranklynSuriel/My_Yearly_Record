@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../Header';
 import {
   Nav,
   NavLink,
@@ -23,11 +24,12 @@ const NavBar = () => {
               Search
             </NavLink>
             <NavLink to='/friends' activeStyle>
-              Friends
+              All Users
             </NavLink>
-        
+          <div>
+          <Header />
+          </div>
           </NavMenu>
-
         </Nav>
         </div>
       </>
