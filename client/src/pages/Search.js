@@ -323,7 +323,7 @@ export const SearchShows = () => {
 // 	return <p>This is the Search Page!</p>;
 // }
 
-// export default {
-//     SearchBooks,
-//     SearchShows,
-// }
+export default {
+    SearchBooks,
+    SearchShows,
+}
