@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
-
+import { Container, Col, Form, Button, Card, Row, Dropdown, DropdownButton } from "react-bootstrap";
 import Auth from "../utils/auth";
+import { Navigate } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { SAVED_BOOK, SAVED_SHOW } from "../utils/mutations";
 import { searchGoogleBooks, searchTMDB } from "../utils/API";
@@ -86,8 +86,10 @@ console.log(bookToSave)
 	return (
 		<>
 			<div className="text-light bg- p-5">
-				<Container>
-					<h1>Search for Books!</h1>
+				{/* <Container className="search-container"> */}
+					<p className="search-title">Add to your Records!</p>
+					<Container className="search-container">
+
 					<Form onSubmit={handleFormSubmit}>
 						<Row>
 							<Col xs={12} md={8}>
@@ -96,18 +98,24 @@ console.log(bookToSave)
 									value={searchInput}
 									onChange={(e) => setSearchInput(e.target.value)}
 									type="text"
-									size="lg"
-									placeholder="Search for a book"
+									size="xlg"
+									placeholder="Search"
 								/>
+								<DropdownButton id="dropdown-basic-button" title="Choose a Category" className="dropdown-info">
+									<Dropdown.Item>
+									<Navigate to="/searchbook" />Books</Dropdown.Item>
+									<Dropdown.Item href="#/search">TV Shows</Dropdown.Item>
+								</DropdownButton>
 							</Col>
+
 							<Col xs={12} md={4}>
 								<Button
+									className="submit-btn"
 									type="submit"
 									variant="success"
 									size="lg"
-									style={{ backgroundColor: "purple" }}
 								>
-									Submit Search
+									Search
 								</Button>
 							</Col>
 						</Row>
@@ -124,7 +132,7 @@ console.log(bookToSave)
 				<Row>
 					{searchedBooks.map((book) => {
 						return (
-							<Col md="4" style={{padding:"20px"}}>
+							<Col md="4" style={{ padding: "20px" }}>
 								<Card key={book.bookId} border="dark">
 									{book.image ? (
 										<Card.Img
@@ -145,7 +153,7 @@ console.log(bookToSave)
 												disabled={readBookIds?.some(
 													(savedBookId) => savedBookId === book.bookId
 												)}
-												className="btn-block btn-info"
+												className="btn-block btn-info join-btn"
 												onClick={() => handleSaveBook(book.bookId)}
 											>
 												{readBookIds?.some(
@@ -165,6 +173,11 @@ console.log(bookToSave)
 		</>
 	);
 };
+
+
+
+
+
 
 export const SearchShows = () => {
 	const [searchedShows, setSearchedShows] = useState([]);
@@ -206,7 +219,7 @@ export const SearchShows = () => {
 				poster: show.poster_path || "",
 			}));
 			console.log(showData);
-		
+
 			setSearchedShows(showData);
 			setSearchInput("");
 		} catch (err) {
@@ -257,7 +270,7 @@ export const SearchShows = () => {
 									value={searchInput}
 									onChange={(e) => setSearchInput(e.target.value)}
 									type="text"
-									size="lg"
+									size="md"
 									placeholder="Search for a tv show"
 								/>
 							</Col>
@@ -285,8 +298,8 @@ export const SearchShows = () => {
 				<Row>
 					{searchedShows.map((show) => {
 						return (
-							<Col md="4" style={{padding:"20px"}}>
-								<Card key={show.id} border="dark" style={{backgroundColor: "#F29506"}}>
+							<Col md="4" style={{ padding: "20px" }}>
+								<Card key={show.id} border="dark" style={{ backgroundColor: "#F29506" }}>
 									{show.poster ? (
 										<Card.Img
 											src={`https://image.tmdb.org/t/p/original/${show.poster}`}
@@ -299,20 +312,20 @@ export const SearchShows = () => {
 										<Card.Title >{show.name}</Card.Title>
 										<Card.Text style={{ maxHeight: "75px", overflowY: "auto" }}>{show.overview}</Card.Text>
 										{Auth.loggedIn() && (
-                                        <Button
-                                            disabled={watchedShowIds?.some(
-                                                (savedShowId) => savedShowId === show.showId
-                                            )}
-                                            className="btn-block btn-info"
-                                            onClick={() => handleSaveShow(show.showId)}
-                                        >
-                                            {watchedShowIds?.some(
-                                                (savedShowId) => savedShowId === show.showId
-                                            )
-                                                ? "This show has already been saved!"
-                                                : "Save this Show!"}
-                                        </Button>
-                                    )}
+											<Button
+												disabled={watchedShowIds?.some(
+													(savedShowId) => savedShowId === show.showId
+												)}
+												className="btn-block btn-info join-btn"
+												onClick={() => handleSaveShow(show.showId)}
+											>
+												{watchedShowIds?.some(
+													(savedShowId) => savedShowId === show.showId
+												)
+													? "This show has already been saved!"
+													: "Save this Show!"}
+											</Button>
+										)}
 									</Card.Body>
 								</Card>
 							</Col>

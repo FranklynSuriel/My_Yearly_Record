@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Row, Col, Button} from "react-bootstrap";
 // import { Navigate, useParams } from 'react-router-dom';
 // import Auth from '../utils/auth';
 import { useQuery, useMutation, gql } from "@apollo/client";
@@ -45,12 +45,17 @@ const Friends = () => {
 
     return (
         <>
-            <div>
+            {/* <div> */}
                 <div className="flex-row justify-center mb-3">
                     <h1>All Users</h1>
+                    <div className="friend-group">
+                    <Row xs={1} md={2} className="g-4">
+                    {Array.from({ length: 2 }).map((_, idx) => (
+
                     <ul>
+                        <Col>
                         {data.users.map((user) => (
-                            <Card border="dark" >
+                            <Card border="dark" className="friend-card" >
                                 <Card.Body key={user.username} border="dark" >
                                     <Card.Title>{user.username}</Card.Title>
                                     <p>
@@ -62,13 +67,14 @@ const Friends = () => {
                                     <p>
                                         <strong>Friends:</strong> {user.savedFriends.map((friend) => friend.username).join(", ") || ["No friends to display."]}
                                     </p>
-                                    {/* {user.username !== loggedInUser.username && (
+                                    <Button className="join-btn">Add Friend</Button>
+                                      {/* {user.username !== loggedInUser.username && (
                                         <button onClick={() => handleSaveFriend(loggedInUser.username, user.username)}>
                                             {savingFriend ? "Saving friend..." : "Save friend"}
                                         </button>
                                     )} */}
                                     {/* {Auth.loggedIn() && (
-											<Button
+									    <Button
 												disabled={savedReadBookIds?.some(
 													(savedBookId) => savedBookId === book.bookId
 												)}
@@ -80,15 +86,19 @@ const Friends = () => {
 												)
 													? "This book has already been saved!"
 													: "Save this Book!"}
-											</Button>
+											// </Button>
 										)} */}
-
                                 </Card.Body>
                             </Card>
-                        ))}
-                    </ul>
+                             ))}
+
+                            </Col>
+                        </ul>
+                        ))}   
+                    </Row>
+                    </div>
                 </div>
-            </div>
+             {/* </div> */}
         </>
     );
 };

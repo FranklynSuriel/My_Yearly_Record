@@ -12,12 +12,12 @@ const Header = () => {
     <header className=" text-light mb-4 py-3 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
-          <Link className="text-light" to="/">
+          {/* <Link className="text-light" to="/">
             <h1 className="m-0">My Yearly Record</h1>
-          </Link>
-          <p className="m-0">Create list of your favorite books or tv shows.</p>
+          </Link> */}
+          {/* <p className="m-0">Create your own watched and read records</p> */}
         </div>
-        <div>
+        <div className='header-container'>
           {Auth.loggedIn() ? (
             <>
               <Link className="btn btn-lg btn-info m-2" to="/Profile">
@@ -29,10 +29,10 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
+              <Link className="btn btn-lg btn-info m-2 login-btn" to="/login">
                 Login
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
+              <Link className="btn btn-lg btn-light m-2 sign-btn" to="/signup">
                 Signup
               </Link>
             </>

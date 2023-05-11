@@ -8,15 +8,15 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import "./App.css";
-// import Search from './pages/Search';
 import Landing from './pages/Landing';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Header from './components/Header';
+// import Header from './components/Header';
 import Footer from './components/Footer';
 import Friend from './pages/Friend'
 import {SearchShows} from './pages/Search';
 import {SearchBooks} from './pages/Search';
+import NavBar from './components/Navbar/Navbar';
 // import NavBar from './components/navBar';
 
 
@@ -48,8 +48,8 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<div className="flex-column justify-flex-start min-100-vh">
-					<Header />
+				<div className="flex-column justify-flex-start min-100-vh">	
+					<NavBar />
 					<div className="container vh-100 ">
 						<Routes>
 							<Route
@@ -65,7 +65,7 @@ function App() {
 								element={<Signup />}
 							/>
 							<Route
-								path="/profile"
+								path="/friends"
 								element={<Friend />}
 							/>
 							<Route
