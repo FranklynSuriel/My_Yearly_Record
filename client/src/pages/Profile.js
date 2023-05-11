@@ -41,20 +41,20 @@ const Profile = () => {
   const { loading, data } = useQuery(QUERY_ME);
   
 
-  const user = localStorage.getItem('username')
+
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!user) {
-    return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
-    );
-  }
+  // if (!user) {
+  //   return (
+  //     <h4>
+  //       You need to be logged in to see this. Use the navigation links above to
+  //       sign up or log in!
+  //     </h4>
+  //   );
+  // }
 
   // const ode, setMode] = useState('inline');
   // const [theme, setTheme] = useState('light');
@@ -67,7 +67,6 @@ const Profile = () => {
 
   return (
     <>
-    <h2>Welcome, {user}</h2>
       {/* <Switch onChange={changeMode} /> Change Mode
       <Divider type="vertical" />
       <Switch onChange={changeTheme} /> Change Style */}

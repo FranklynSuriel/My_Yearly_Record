@@ -66,6 +66,10 @@ function App() {
 								element={<Signup />}
 							/>
 							<Route
+								path="/profile"
+								element={<Profile />}
+							/>
+							<Route
 								path="/friends"
 								element={<Friend />}
 							/>

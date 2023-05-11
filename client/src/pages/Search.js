@@ -16,7 +16,7 @@ export const SearchBooks = () => {
 	const [searchedBooks, setSearchedBooks] = useState([]);
 	const [searchInput, setSearchInput] = useState("");
 	const [saveBookMutation] = useMutation(SAVED_BOOK);
-	const [saveReadBookIds, setReadBookIds] = useState(getReadBookIds());
+	const [readBookIds, setReadBookIds] = useState(getReadBookIds());
 
 	useEffect(() => {
 		return () => {
