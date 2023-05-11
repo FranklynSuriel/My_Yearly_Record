@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Col, Form, Button, Card, Row, Dropdown, DropdownButton } from "react-bootstrap";
 import Auth from "../utils/auth";
+import { Navigate } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 import { SAVED_BOOK, SAVED_SHOW } from "../utils/mutations";
 import { searchGoogleBooks, searchTMDB } from "../utils/API";
@@ -101,7 +102,8 @@ export const SearchBooks = () => {
 									placeholder="Search"
 								/>
 								<DropdownButton id="dropdown-basic-button" title="Choose a Category" className="dropdown-info">
-									<Dropdown.Item href="#/searchbook">Books</Dropdown.Item>
+									<Dropdown.Item>
+									<Navigate to="/searchbook" />Books</Dropdown.Item>
 									<Dropdown.Item href="#/search">TV Shows</Dropdown.Item>
 								</DropdownButton>
 							</Col>
