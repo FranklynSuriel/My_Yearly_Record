@@ -23,7 +23,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedBooks to be an array of data that adheres to the bookSchema
+    // set savedBooks to be an array of data that adheres to the bookSchemas
     savedBooks: [bookSchema],   
     savedTvShows: [tvShowsSchema],   
     savedFriends: [friendsSchema],  
