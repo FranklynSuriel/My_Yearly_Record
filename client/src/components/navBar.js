@@ -10,8 +10,8 @@ import Auth from '../utils/auth';
 
 
 function NavBar() {
-    const [openModal, setOpenModal] = useState(false);
-    const [openSignModal, setOpenSignModal] = useState(false);
+    // const [openModal, setOpenModal] = useState(false);
+    // const [openSignModal, setOpenSignModal] = useState(false);
     return (
         <Navbar className="menu">
             <h1 id='title'>My Yearly Record</h1>
@@ -30,7 +30,7 @@ function NavBar() {
                     <Link to="/"> Friends </Link>
                 </li>
             </ul>
-            <Space wrap>
+            {/* <Space wrap>
                 <Button type='dashed' className="openModalBtn" onClick={() => {
                     setOpenModal(true);
                 }}>Login</Button>
@@ -40,7 +40,7 @@ function NavBar() {
                     setOpenSignModal(true);
                 }}>Sign-Up</Button>
                 {openSignModal && <SignUpModal closeModal={setOpenSignModal} />}
-            </Space>
+            </Space> */}
         </Navbar>
 
 
