@@ -166,7 +166,7 @@ export const SearchBooks = () => {
 	);
 };
 
-export default SearchBooks;
+// export default SearchBooks;
 
 export const SearchShows = () => {
 	const [searchedShows, setSearchedShows] = useState([]);
@@ -323,7 +323,7 @@ export const SearchShows = () => {
 // 	return <p>This is the Search Page!</p>;
 // }
 
-export default {
-    SearchBooks,
-    SearchShows,
-}
+// export default {
+//     SearchBooks,
+//     SearchShows,
+// }
