@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 // import { Navigate, useParams } from 'react-router-dom';
 // import Auth from '../utils/auth';
@@ -11,35 +11,30 @@ import { ADD_FRIEND } from "../utils/mutations"
 
 const Friends = () => {
 
-    const { loading, data, error } = useQuery(QUERY_USERS);
-    const [saveFriend, { loading: savingFriend }] = useMutation(ADD_FRIEND);
+    const { loading, data } = useQuery(QUERY_USERS);
+    const [saveFriend, { loading: savingFriend, error }] = useMutation(ADD_FRIEND);
+    const [friend, setFriend] = useState('');
 
-    const handleSaveFriend = (username, friendUsername) => {
-        saveFriend({
-            variables: { username, friendUsername },
-            update: (cache, { data: { saveFriend } }) => {
-                cache.modify({
-                    fields: {
-                        users(existingUsers = []) {
-                            const newFriendRef = cache.writeFragment({
-                                data: saveFriend,
-                                fragment: gql`
-                                fragment NewFriend on User {
-                                    savedFriends {
-                                        username
-                                    }
-                                }`
-                            });
-                            return [existingUsers, newFriendRef];
-                        }
-                    }
-                });
-            }
-        });
+    const loggedInUser =localStorage.getItem('username');
+    console.log(loggedInUser)
+
+    const handleSaveFriend = async (friendUsername) => {
+        setFriend(friendUsername)
+        console.log("handleSaveFriend")
+        console.log(friendUsername)
+        
+        try {
+            const { data } = await saveFriend ({
+                variables: { friend: { friend } }
+            })
+        } catch(error) {
+            console.log(error)
+        }
+        
     };
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+    // if (error) return <p>Error :(</p>;
 
     console.log(data)
 
@@ -62,11 +57,11 @@ const Friends = () => {
                                     <p>
                                         <strong>Friends:</strong> {user.savedFriends.map((friend) => friend.username).join(", ") || ["No friends to display."]}
                                     </p>
-                                    {/* {user.username !== loggedInUser.username && (
-                                        <button onClick={() => handleSaveFriend(loggedInUser.username, user.username)}>
+                                    {user.username !== loggedInUser && (
+                                        <button onClick={() => handleSaveFriend(user.username)}>
                                             {savingFriend ? "Saving friend..." : "Save friend"}
                                         </button>
-                                    )} */}
+                                    )}
                                     {/* {Auth.loggedIn() && (
 											<Button
 												disabled={savedReadBookIds?.some(

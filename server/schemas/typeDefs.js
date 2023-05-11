@@ -9,6 +9,7 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
+        password: String
         savedBooks: [Books]!
         savedTvShows: [TvShows]!
         savedFriends: [Friends]!
@@ -58,7 +59,6 @@ const typeDefs = gql`
     }
     
     type Friends {
-        _id: ID!
         username: String
         
     }
@@ -87,7 +87,7 @@ const typeDefs = gql`
         bookCommentsCreate( comments: String!, bookId: String!): String
         removeBookComment( bookId: String!, _id: ID!): String
 
-        addFriend( Friend: FriendInput!): String
+        addFriend( Friend: FriendInput!): Friends
         removeFriends( Friend: FriendInput!): String
     }
 `;
