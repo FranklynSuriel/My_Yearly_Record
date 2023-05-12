@@ -11,14 +11,14 @@ import "./App.css";
 import Landing from './pages/Landing';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-// import Header from './components/Header';
 import Footer from './components/Footer';
 import Friend from './pages/Friend'
 import Profile from './pages/Profile';
-import {SearchShows} from './pages/Search';
-import {SearchBooks} from './pages/Search';
+import {SearchShows} from './pages/SearchBook';
+import {SearchBooks} from './pages/SearchBook';
 import NavBar from './components/Navbar/Navbar';
-// import NavBar from './components/navBar';
+import SearchLanding from './pages/SearchLanding';
+
 
 
 // Construct our main GraphQL API endpoint
@@ -75,10 +75,14 @@ function App() {
 							/>
 							<Route
 								path="/search"
+								element={<SearchLanding />}
+							/>
+							<Route
+								path="/tvshows"
 								element={<SearchShows />}
 							/>
 							<Route
-								path="/searchbook"
+								path="/books"
 								element={<SearchBooks />}
 							/>
 						</Routes>

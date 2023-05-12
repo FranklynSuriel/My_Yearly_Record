@@ -101,11 +101,12 @@ console.log(bookToSave)
 									size="xlg"
 									placeholder="Search"
 								/>
-								<DropdownButton id="dropdown-basic-button" title="Choose a Category" className="dropdown-info">
+								{/* <DropdownButton id="dropdown-basic-button" title="Choose a Category" className="dropdown-info">
 									<Dropdown.Item>
-									<Navigate to="/searchbook" />Books</Dropdown.Item>
-									<Dropdown.Item href="#/search">TV Shows</Dropdown.Item>
-								</DropdownButton>
+									<Navigate to="/books" />Books</Dropdown.Item>
+									<Dropdown.Item>
+									<Navigate to="/tvshows" />TV Shows</Dropdown.Item>
+								</DropdownButton> */}
 							</Col>
 
 							<Col xs={12} md={4}>
@@ -337,11 +338,8 @@ export const SearchShows = () => {
 	);
 };
 
-// function Search() {
-// 	return <p>This is the Search Page!</p>;
-// }
+// // function Search() {
+// // 	return <p>This is the Search Page!</p>;
+// // }
 
-// export default {
-//     SearchBooks,
-//     SearchShows,
-// }
+// export default SearchBooks;
