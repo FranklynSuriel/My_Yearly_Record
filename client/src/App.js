@@ -85,6 +85,10 @@ function App() {
 								path="/books"
 								element={<SearchBooks />}
 							/>
+							<Route
+								path="*"
+								element={<div>Not Found</div>}
+							/>
 						</Routes>
 					</div>
 					<Footer />
