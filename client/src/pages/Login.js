@@ -122,7 +122,10 @@ const Login = (props) => {
       const { data } = await login({
         variables: { ...formState },
       });
-
+      
+      // Save the username to local storage
+      localStorage.setItem('username', data.login.user.username);
+      
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);

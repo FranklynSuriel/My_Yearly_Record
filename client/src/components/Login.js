@@ -119,6 +119,7 @@ const Login = (props) => {
             });
 
             Auth.login(data.login.token);
+            // save the username to local store 
         } catch (e) {
             console.error(e);
         }

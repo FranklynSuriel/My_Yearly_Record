@@ -8,7 +8,6 @@ const resolvers = {
         me: async (parent, args, context) => {
             if (context.user) {
                 const foundUser = User.findOne({ _id: context.user._id })
-                    .select('__v -password');
                 return foundUser;
             }
             throw new AuthenticationError('Not logged in');
@@ -177,7 +176,7 @@ const resolvers = {
                 try {
                     const updateUser = await User.findOneAndUpdate(
                         { _id: context.user._id },
-                        { $addToSet: { savedFriends: Friend } },
+                        { $push: { savedFriends: Friend } },
                         { new: true, runValidators: true }
                     );
                     console.log(updateUser)
