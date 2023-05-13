@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col, Form, Button, Card, Row, Dropdown, DropdownButton } from "react-bootstrap";
+import {
+	Container,
+	Col,
+	Form,
+	Button,
+	Card,
+	Row,
+	Dropdown,
+	DropdownButton,
+} from "react-bootstrap";
 import Auth from "../utils/auth";
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { SAVED_BOOK, SAVED_SHOW } from "../utils/mutations";
 import { searchGoogleBooks, searchTMDB } from "../utils/API";
@@ -62,7 +71,8 @@ export const SearchBooks = () => {
 
 	const handleSaveBook = async (bookId) => {
 		const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-console.log(bookToSave)
+		console.log(bookToSave);
+		console.log(typeof bookId)
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
 
 		if (!token) {
@@ -75,7 +85,7 @@ console.log(bookToSave)
 			});
 
 			setReadBookIds([...readBookIds, bookToSave.bookId]);
-			saveReadBookIds([...readBookIds, bookToSave.bookId])
+			saveReadBookIds([...readBookIds, bookToSave.bookId]);
 
 			console.log(data);
 		} catch (err) {
@@ -87,9 +97,8 @@ console.log(bookToSave)
 		<>
 			<div className="text-light bg- p-5">
 				{/* <Container className="search-container"> */}
-					<p className="search-title">Add to your Records!</p>
-					<Container className="search-container">
-
+				<p className="search-title">Add to your Records!</p>
+				<Container className="search-container">
 					<Form onSubmit={handleFormSubmit}>
 						<Row>
 							<Col xs={12} md={8}>
@@ -175,16 +184,9 @@ console.log(bookToSave)
 	);
 };
 
-
-
-
-
-
 export const SearchShows = () => {
 	const [searchedShows, setSearchedShows] = useState([]);
 	const [searchInput, setSearchInput] = useState("");
-	const [saveShowMutation] = useMutation(SAVED_SHOW);
-	const [watchedShowIds, setWatchedShowIds] = useState(getWatchedShowIds());
 
 	useEffect(() => {
 		return () => {
@@ -205,7 +207,6 @@ export const SearchShows = () => {
 			console.log(searchInput);
 			console.log(response);
 
-
 			if (response.status < 200 || response.status > 299) {
 				throw new Error("something went wrong");
 			}
@@ -219,6 +220,7 @@ export const SearchShows = () => {
 				overview: show.overview,
 				poster: show.poster_path || "",
 			}));
+			
 			console.log(showData);
 
 			setSearchedShows(showData);
@@ -228,34 +230,47 @@ export const SearchShows = () => {
 		}
 	};
 
+	const [saveShowMutation] = useMutation(SAVED_SHOW);
+	const [watchedShowIds, setWatchedShowIds] = useState(getWatchedShowIds());
+console.log(saveShowMutation)
+
 	const handleSaveShow = async (tvShowsId) => {
-		console.log(searchedShows)
-		console.log(tvShowsId)
-		const showToSave = searchedShows.find((show) => show.showId === tvShowsId);
-		console.log(showToSave)
-
+		console.log(searchedShows);
+		console.log(tvShowsId);
+		console.log(typeof tvShowsId)
+	
+		const showToSave = searchedShows.find(
+			(show) => show.tvShowsId === tvShowsId
+		);
+	
+		console.log(showToSave);
+	
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-		console.log(token)
-
+	
 		if (!token) {
 			return false;
 		}
-
-		try {
-			const {data} = await saveShowMutation({
-				variables: { showData: { ...showToSave } },
-			});
-
-			setWatchedShowIds([...watchedShowIds, showToSave.tvShowsId]);
-			saveWatchedShowIds([...watchedShowIds, showToSave.tvShowsId])
-
-			console.log(setWatchedShowIds);
-
-			console.log(data);
-		} catch (err) {
-			console.error(err);
+	
+		console.log("hello from before the try catch");
+	const stringTvShowsId = tvShowsId.toString()
+	console.log(typeof stringTvShowsId)
+		const {data} = await saveShowMutation({
+			variables: { tvShowsData: { ...showToSave.stringTvShowsId } },
+		});
+	
+		if (data.errors) {
+			console.error("Show not saved");
+			return;
 		}
+	
+		console.log("hello from inside the try catch");
+	
+		const updatedWatchedShowIds = [...watchedShowIds, showToSave.stringTvShowsId];
+	
+		setWatchedShowIds(updatedWatchedShowIds);
+		saveWatchedShowIds(updatedWatchedShowIds);
+	
+		console.log(data);
 	};
 
 	return (
@@ -300,7 +315,11 @@ export const SearchShows = () => {
 					{searchedShows.map((show) => {
 						return (
 							<Col md="4" style={{ padding: "20px" }}>
-								<Card key={show.id} border="dark" style={{ backgroundColor: "#F29506" }}>
+								<Card
+									key={show.id}
+									border="dark"
+									style={{ backgroundColor: "#F29506" }}
+								>
 									{show.poster ? (
 										<Card.Img
 											src={`https://image.tmdb.org/t/p/original/${show.poster}`}
@@ -310,18 +329,20 @@ export const SearchShows = () => {
 										/>
 									) : null}
 									<Card.Body>
-										<Card.Title >{show.name}</Card.Title>
-										<Card.Text style={{ maxHeight: "75px", overflowY: "auto" }}>{show.overview}</Card.Text>
+										<Card.Title>{show.name}</Card.Title>
+										<Card.Text style={{ maxHeight: "75px", overflowY: "auto" }}>
+											{show.overview}
+										</Card.Text>
 										{Auth.loggedIn() && (
 											<Button
 												disabled={watchedShowIds?.some(
-													(savedShowId) => savedShowId === show.showId
+													(savedShowId) => savedShowId === show.tvShowsId
 												)}
 												className="btn-block btn-info join-btn"
-												onClick={() => handleSaveShow(show.showId)}
+												onClick={() => handleSaveShow(show.tvShowsId)}
 											>
 												{watchedShowIds?.some(
-													(savedShowId) => savedShowId === show.showId
+													(savedShowId) => savedShowId === show.tvShowsId
 												)
 													? "This show has already been saved!"
 													: "Save this Show!"}
@@ -337,9 +358,3 @@ export const SearchShows = () => {
 		</>
 	);
 };
-
-// // function Search() {
-// // 	return <p>This is the Search Page!</p>;
-// // }
-
-// export default SearchBooks;
