@@ -41,19 +41,41 @@ export const removeReadBookIds = (bookId) => {
     return true;
 };
 
-export const getWatchedShowIds = () => {
-    const savedShowIds = localStorage.getItem('saved_watched_shows')
-    ? JSON.parse(localStorage.getItem('saved_watched_shows'))
-    : [];
+// export const getWatchedShowIds = () => {
+//     const savedShowIds = localStorage.getItem('saved_watched_shows')
+//     ? JSON.parse(localStorage.getItem('saved_watched_shows'))
+//     : [];
 
-    return savedShowIds
-}
+//     return console.log(savedShowIds)
+// }
+
+export const getWatchedShowIds = () => {
+    const savedShowIds = localStorage.getItem('saved_watched_shows');
+
+    console.log(savedShowIds)
+  
+    if (!savedShowIds) {
+      console.log('No saved_watched_shows item in localStorage');
+      return [];
+    }
+  
+    try {
+      const parsedShowIds = JSON.parse(savedShowIds);
+      console.log('Parsed saved_watched_shows item:', parsedShowIds);
+      return parsedShowIds;
+    } catch (err) {
+      console.log('Error parsing saved_watched_shows item:', err);
+      return [];
+    }
+  };
 
 export const saveWatchedShowIds = (showIdArr) => {
+    console.log(showIdArr)
     if (showIdArr.length) {
         localStorage.setItem('saved_watched_shows', JSON.stringify(showIdArr))
     }
 }
+
 
 export const removeWatchedShowIds = (showId) => {
     const savedShowIds = localStorage.getItem('saved_watched_shows')
