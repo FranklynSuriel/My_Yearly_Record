@@ -13,11 +13,6 @@ const tvShowsSchema = new Schema({
     poster: {
         type: String,
     },
-    author:[
-        {
-            type: String,
-        },        
-    ],
     tvShowsId: {
         type: String,
         required: true,
