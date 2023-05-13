@@ -6,9 +6,14 @@ query Me {
         username
         savedBooks {
             title
+            image
+            authors
+            description
         }
         savedTvShows {
             name
+            overview
+            poster
         }
         savedFriends {
             username

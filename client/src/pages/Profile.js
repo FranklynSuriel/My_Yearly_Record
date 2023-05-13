@@ -1,91 +1,55 @@
-import React, { useState } from "react";
-import { Navigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import {
+  Button
+} from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
-import { QUERY_ME} from '../utils/queries';
-import Auth from '../utils/auth';
-import { PlayCircleOutlined, 
-  TeamOutlined, 
-  BookOutlined,
-  } from '@ant-design/icons';
-import { Divider, Menu, Switch } from 'antd';
+import { QUERY_ME } from '../utils/queries';
+import SavedBookList from '../components/SavedBookList'
+import SavedTvShowList from '../components/SavedTvShowList'
+import SavedFriendList from '../components/SavedFriendList'
 
-function getItem(label, key, icon, children) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-}
-console.log(getItem)
-
-const items = [
-  
-  
-  getItem('Book List', 'sub1', <BookOutlined />, [
-    getItem('Reading', '1'),
-    getItem('To Read', '2'),
-    getItem('Read', '3'),    
-  ]),
-  getItem('Tv Show List', 'sub2', <PlayCircleOutlined />, [
-    getItem('Watching', '4'),
-    getItem('To Watch', '5'),
-    getItem('Watched', '6'),    
-  ]),
-  getItem('Friend', '7', <TeamOutlined />),
-  
-];
-
-const Profile = () => {
-  const { username: userParam } = useParams();
+const SavedFriends = () => {
+  const [BookList, setBookList] = useState(false);
+  const [TvShowList, setTvShowList] = useState(false);
+  const [FriendList, setFriendList] = useState(false);
   const { loading, data } = useQuery(QUERY_ME);
-  
 
-
-
-  if (loading) {
-    return <div>Loading...</div>;
+  const handleBook = () => {
+    setBookList(true);
+    setTvShowList(false);
+    setFriendList(false);
+  }
+  const handleTvShow = () => {
+    setBookList(false);
+    setTvShowList(true);
+    setFriendList(false);
+  }
+  const handleFriend = () => {
+    setBookList(false);
+    setTvShowList(false);
+    setFriendList(true);
   }
 
-  // if (!user) {
-  //   return (
-  //     <h4>
-  //       You need to be logged in to see this. Use the navigation links above to
-  //       sign up or log in!
-  //     </h4>
-  //   );
-  // }
+  console.log(data)
 
-  // const ode, setMode] = useState('inline');
-  // const [theme, setTheme] = useState('light');
-  // const changeMode = (value) => {
-  //   setMode(value ? 'vertical' : 'inline');
-  // };
-  // const changeTheme = (value) => {
-  //   setTheme(value ? 'dark' : 'light');
-  // };[m
+  // if data isn't here yet, say so
+  if (loading) return <p>Loading...</p>;
 
   return (
     <>
-      {/* <Switch onChange={changeMode} /> Change Mode
-      <Divider type="vertical" />
-      <Switch onChange={changeTheme} /> Change Style */}
-      <br />
-      <br />
-      <Menu
-        style={{
-          width: 256,
-        }}
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        // mode={mode}
-        // theme={theme}
-        items={items}
-      />
+      <div>
+        <div>
+          <h2>Check out your lists</h2>
+        </div>
+        <Button onClick={handleBook}>Book List</Button>
+        <Button onClick={handleTvShow}>Tv Show List</Button>
+        <Button onClick={handleFriend}>Friend List</Button>
+        {BookList && <SavedBookList />}
+        {TvShowList && <SavedTvShowList />}
+        {FriendList && <SavedFriendList />}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Profile;
-
-
+export default SavedFriends;

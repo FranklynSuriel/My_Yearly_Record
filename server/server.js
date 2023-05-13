@@ -21,14 +21,15 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
 
 app.get('/api/environment', (req, res) => {
   const SHOW_API_KEY = process.env.API_KEY;
   const responseData =  SHOW_API_KEY ;
   res.json(responseData);
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 
