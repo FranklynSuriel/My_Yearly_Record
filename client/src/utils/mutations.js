@@ -57,8 +57,8 @@ mutation RemoveBook($bookData: BookInput!) {
 }
 `;
 export const SAVED_SHOW = gql`
-mutation SavedTvShows($tvShowsData: TvShowInput!) {
-    savedTvShows(tvShowsData: $tvShowsData) {
+mutation SavedTvShows($TvShowsData: TvShowInput!) {
+    savedTvShows(TvShowsData: $TvShowsData) {
         _id
         username
         email
