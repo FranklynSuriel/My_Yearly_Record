@@ -14,8 +14,8 @@ import Login from './pages/Login';
 import Footer from './components/Footer';
 import Friend from './pages/Friend'
 import Profile from './pages/Profile';
-import {SearchShows} from './pages/SearchBook';
-import {SearchBooks} from './pages/SearchBook';
+import {SearchShows} from './pages/Search';
+import {SearchBooks} from './pages/Search';
 import NavBar from './components/Navbar/Navbar';
 import SearchLanding from './pages/SearchLanding';
 

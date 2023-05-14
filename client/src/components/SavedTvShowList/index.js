@@ -23,11 +23,11 @@ const SavedTvShows = () => {
     <>
       <div fluid className="text-light p-5">
         <Container>
-          <h1>Viewing saved tv shows!</h1>
+          {/* <h1>Viewing saved tv shows!</h1> */}
         </Container>
       </div>
       <Container>
-        <h2 className='pt-5'>
+        <h2 className='pt-5 savedtv-title'>
           {data.me.savedTvShows.length
             ? `Viewing ${data.me.savedTvShows.length} saved ${data.me.savedTvShows.length === 1 ? 'TvShow' : 'TvShows'}:`
             : 'You have no saved TvShows!'}
@@ -36,8 +36,8 @@ const SavedTvShows = () => {
           {data.me.savedTvShows.map((tvShow) => {
             return (
               <Col md="4" style={{ maxHeight: "600px", paddingTop:"20px"}}>
-                <Card key={tvShow.tvShowId} border='dark' >
-                  {tvShow.poster ? <Card.Img style={{objectFit: 'contain', maxHeight: "200px"}} src={tvShow.poster} alt={`The cover for ${tvShow.name}`} variant='top' /> : null}
+                <Card key={tvShow.tvShowId} className='show-box' >
+                  {tvShow.image ? <Card.Img style={{objectFit: 'contain', maxHeight: "200px"}} src={tvShow.image} alt={`The cover for ${tvShow.name}`} variant='top' /> : null}
                   <Card.Body >
                     <Card.Title>{tvShow.name}</Card.Title>
                     <p className='small'>Authors: {tvShow.authors}</p>
