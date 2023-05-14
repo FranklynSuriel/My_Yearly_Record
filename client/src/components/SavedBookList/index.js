@@ -3,18 +3,37 @@ import {
   Container,
   Card,
   Row,
-  Col
+  Col,
+  Button
 } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
-
+import { useMutation } from '@apollo/client';
+import { REMOVE_BOOK } from '../../utils/mutations'
+import Auth from '../../utils/auth'
 
 const SavedBookList = () => {
 
-
+  const [removeBook] = useMutation(REMOVE_BOOK);
   const { loading, data } = useQuery(QUERY_ME);
+
+
   
-  
+  const handleDeleteBook = async (bookId) => {    
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+    try {
+      const { data } = await removeBook({
+        variables: { bookId },
+      });
+
+    }catch(err) {
+      console.log(err)
+    }
+  }
   // if data isn't here yet, say so
   if (loading) return <p>Loading...</p>;
   
@@ -43,7 +62,10 @@ const SavedBookList = () => {
                     <p className='small'>Authors: {book.authors}</p>
                     <Card.Text style={{ maxHeight: "200px", overflowY: "auto" }}>
                       {book.description}
-                    </Card.Text>                    
+                    </Card.Text>
+                    <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
+                      Delete this Book!
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>
