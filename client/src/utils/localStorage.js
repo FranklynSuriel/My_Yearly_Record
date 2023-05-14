@@ -41,14 +41,6 @@ export const removeReadBookIds = (bookId) => {
     return true;
 };
 
-// export const getWatchedShowIds = () => {
-//     const savedShowIds = localStorage.getItem('saved_watched_shows')
-//     ? JSON.parse(localStorage.getItem('saved_watched_shows'))
-//     : [];
-
-//     return console.log(savedShowIds)
-// }
-
 export const getWatchedShowIds = () => {
     const savedShowIds = localStorage.getItem('saved_watched_shows');
 
