@@ -57,10 +57,10 @@ const Friends = () => {
                                                     <strong> Book lists: </strong> {user.savedBooks.slice(0, 5).map((book) => book.title).join(", ") || ["No books to display."]}
                                                 </p>
                                                 <p>
-                                                    <strong>TV Show lists:</strong> {user.savedTvShows.map((show) => show.name).join(", ") || ["No tv shows to display."]}
+                                                    <strong>TV Show lists:</strong> {user.savedTvShows.slice(0, 5).map((show) => show.name).join(", ") || ["No tv shows to display."]}
                                                 </p>
                                                 <p>
-                                                    <strong>Friends:</strong> {user.savedFriends.map((friend) => friend.username).join(", ") || ["No friends to display."]}
+                                                    <strong>Friends:</strong> {user.savedFriends.slice(0, 5).map((friend) => friend.username).join(", ") || ["No friends to display."]}
                                                 </p>
                                                 {user.username !== loggedInUser && (
                                                     <Button className="join-btn" onClick={() => handleSaveFriend(user.username)}>

@@ -110,12 +110,6 @@ export const SearchBooks = () => {
 									size="xlg"
 									placeholder="Search"
 								/>
-								{/* <DropdownButton id="dropdown-basic-button" title="Choose a Category" className="dropdown-info">
-									<Dropdown.Item>
-									<Navigate to="/books" />Books</Dropdown.Item>
-									<Dropdown.Item>
-									<Navigate to="/tvshows" />TV Shows</Dropdown.Item>
-								</DropdownButton> */}
 							</Col>
 
 							<Col xs={12} md={4}>
@@ -187,11 +181,13 @@ export const SearchBooks = () => {
 export const SearchShows = () => {
 	const [searchedShows, setSearchedShows] = useState([]);
 	const [searchInput, setSearchInput] = useState("");
-
+	const [saveShowMutation] = useMutation(SAVED_SHOW);
+	const [watchedShowIds, setWatchedShowIds] = useState(getWatchedShowIds());
+	
 	useEffect(() => {
 		return () => {
-			const showIds = getWatchedShowIds();
-			saveWatchedShowIds(showIds);
+			const tvShowIds = getWatchedShowIds();
+			saveWatchedShowIds(tvShowIds);
 		};
 	}, []);
 
@@ -204,24 +200,19 @@ export const SearchShows = () => {
 
 		try {
 			const response = await searchTMDB(searchInput);
-			console.log(searchInput);
-			console.log(response);
 
 			if (response.status < 200 || response.status > 299) {
 				throw new Error("something went wrong");
 			}
 
-			console.log(response);
-			console.log(typeof response);
-
 			const showData = response.results.map((show) => ({
-				tvShowsId: show.id,
+				tvShowsId: show.id.toString(),
 				name: show.name,
 				overview: show.overview,
-				poster: show.poster_path || "",
+				poster: "https://image.tmdb.org/t/p/original" + show.poster_path || "",
 			}));
+
 			
-			console.log(showData);
 
 			setSearchedShows(showData);
 			setSearchInput("");
@@ -230,47 +221,33 @@ export const SearchShows = () => {
 		}
 	};
 
-	const [saveShowMutation] = useMutation(SAVED_SHOW);
-	const [watchedShowIds, setWatchedShowIds] = useState(getWatchedShowIds());
-console.log(saveShowMutation)
 
 	const handleSaveShow = async (tvShowsId) => {
-		console.log(searchedShows);
-		console.log(tvShowsId);
-		console.log(typeof tvShowsId)
-	
-		const showToSave = searchedShows.find(
-			(show) => show.tvShowsId === tvShowsId
-		);
-	
-		console.log(showToSave);
-	
+		const showToSave = searchedShows.find((show) => show.tvShowsId === tvShowsId);
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
-	
+
 		if (!token) {
 			return false;
 		}
-	
-		console.log("hello from before the try catch");
-	const stringTvShowsId = tvShowsId.toString()
-	console.log(typeof stringTvShowsId)
-		const {data} = await saveShowMutation({
-			variables: { tvShowsData: { ...showToSave.stringTvShowsId } },
-		});
-	
-		if (data.errors) {
-			console.error("Show not saved");
-			return;
+		try {
+			const stringTvShowsId = tvShowsId.toString()
+			const { data } = await saveShowMutation({
+				variables: {
+					TvShowsData: {
+						name: showToSave.name,
+						overview: showToSave.overview,
+						poster: showToSave.poster,
+						tvShowsId: showToSave.tvShowsId,
+					},
+				}
+			});
+
+			setWatchedShowIds([...watchedShowIds, stringTvShowsId]);
+			saveWatchedShowIds([...watchedShowIds, stringTvShowsId]);
+
+		} catch (err) {
+			console.log(err)
 		}
-	
-		console.log("hello from inside the try catch");
-	
-		const updatedWatchedShowIds = [...watchedShowIds, showToSave.stringTvShowsId];
-	
-		setWatchedShowIds(updatedWatchedShowIds);
-		saveWatchedShowIds(updatedWatchedShowIds);
-	
-		console.log(data);
 	};
 
 	return (
