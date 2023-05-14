@@ -13,30 +13,42 @@ import { REMOVE_BOOK } from '../../utils/mutations'
 import Auth from '../../utils/auth'
 
 const SavedBookList = () => {
-
-  const [removeBook] = useMutation(REMOVE_BOOK);
   const { loading, data } = useQuery(QUERY_ME);
-
+  const [removeBook, { error }] = useMutation(REMOVE_BOOK, {
+    update(cache, { data: { removeBook } }) {
+      try {
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: { me: removeBook },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
 
   
-  const handleDeleteBook = async (bookId) => {    
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+  const handleDeleteBook = async (bookId) => {
+    console.log(bookId)
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      return false;
-    }
+    // if (!token) {
+    //   return false;
+    // }
+    console.log(removeBook)
     try {
       const { data } = await removeBook({
-        variables: { bookId },
+        variables: {
+            bookId: bookId
+        },
       });
-
-    }catch(err) {
+    } catch (err) {
       console.log(err)
     }
   }
   // if data isn't here yet, say so
   if (loading) return <p>Loading...</p>;
-  
+
   console.log(data)
   return (
     <>
@@ -54,9 +66,9 @@ const SavedBookList = () => {
         <Row>
           {data.me.savedBooks.map((book) => {
             return (
-              <Col md="4" style={{ maxHeight: "600px", paddingTop:"20px"}}>
+              <Col md="4" style={{ maxHeight: "600px", paddingTop: "20px" }}>
                 <Card key={book.bookId} className='book-box'>
-                  {book.image ? <Card.Img style={{objectFit: 'contain', maxHeight: "200px"}} src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                  {book.image ? <Card.Img style={{ objectFit: 'contain', maxHeight: "200px" }} src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                   <Card.Body >
                     <Card.Title>{book.title}</Card.Title>
                     <p className='small'>Authors: {book.authors}</p>

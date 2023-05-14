@@ -5,6 +5,7 @@ query Me {
     me {
         username
         savedBooks {
+            bookId
             title
             image
             authors
