@@ -3,7 +3,8 @@ import {
   Container,
   Card,
   Row,
-  Col
+  Col,
+  Button
 } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
@@ -23,7 +24,7 @@ const SavedFriends = () => {
     <>
       <div fluid className="text-light p-5">
         <Container>
-          <h1>Viewing saved Friends!</h1>
+          {/* <h1>Viewing saved Friends!</h1> */}
         </Container>
       </div>
       <Container>
@@ -36,7 +37,8 @@ const SavedFriends = () => {
           {data.me.savedFriends.map((friend) => {
             return (
               <Col md="4" style={{ maxHeight: "600px", paddingTop: "20px" }}>
-                <Card key={friend.friendId} border='dark' >
+                <div className='friend-box'>
+                <Card key={friend.friendId} className='friend-text' >
                   <Card.Body >
                     <Card.Title>{friend.username}</Card.Title>
                     {/* <p>
@@ -48,8 +50,10 @@ const SavedFriends = () => {
                     <p>
                       <strong>Friends:</strong> {friend.savedFriends.map((friend) => friend.username).join(", ") || ["No friends to display."]}
                     </p> */}
+                    <Button className='join-btn'>Remove Friend</Button>
                   </Card.Body>
                 </Card>
+                </div>
               </Col>
             );
           })}

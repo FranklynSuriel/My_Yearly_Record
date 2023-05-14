@@ -25,8 +25,9 @@ const Friends = () => {
 
         try {
             const { data } = await saveFriend({
-                variables: { friend: { friend } }
+                variables: { friend: { username:friendUsername } }
             })
+            console.log(data)
         } catch (error) {
             console.log(error)
         }
@@ -49,8 +50,10 @@ const Friends = () => {
 
                             <ul>
                                 <Col>
-                                    {data.users.map((user) => (
-                                        <Card border="dark" className="friend-card" >
+                                    {data.users.map((user,i) => (
+                                        (i+idx)%2
+                                        ? null 
+                                        :<Card border="dark" className="friend-card" >
                                             <Card.Body key={user.username} border="dark" >
                                                 <Card.Title>{user.username}</Card.Title>
                                                 <p>
@@ -64,7 +67,8 @@ const Friends = () => {
                                                 </p>
                                                 {user.username !== loggedInUser && (
                                                     <Button className="join-btn" onClick={() => handleSaveFriend(user.username)}>
-                                                        {savingFriend ? "Saving friend..." : "Add Friend"}
+                                                        {savingFriend ? "Friend Saved" 
+                                                        : "Add Friend"}
                                                     </Button>
                                                 )}                                                
                                             </Card.Body>

@@ -39,14 +39,21 @@ const SavedFriends = () => {
     <>
       <div>
         <div>
-          <h2>Check out your lists</h2>
+          
+          <h2 className='profile-title'>Check out your lists</h2>
         </div>
-        <Button onClick={handleBook}>Book List</Button>
-        <Button onClick={handleTvShow}>Tv Show List</Button>
-        <Button onClick={handleFriend}>Friend List</Button>
+        <div className='profile-container'>
+        <div className="profile-btns">
+        <Button onClick={handleBook}className='profile-btn'>Books</Button>
+        <Button onClick={handleTvShow}className='profile-btn'>Tv Shows</Button>
+        <Button onClick={handleFriend}className='profile-btn'>Friends</Button>
+        </div>
+        <div className="profile-selection">
         {BookList && <SavedBookList />}
         {TvShowList && <SavedTvShowList />}
         {FriendList && <SavedFriendList />}
+        </div>
+        </div>
       </div>
     </>
   );
