@@ -76,15 +76,18 @@ const resolvers = {
         removeBook: async (parent, { bookId }, context) => {
             console.log(bookId)
             if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $pull: { savedBooks: { bookId } } },
-                    { new: true }
-                );
-                console.log(updatedUser)
-                return updatedUser;
+                try {
+                    const updatedUser = await User.findOneAndUpdate(
+                        { _id: context.user._id },
+                        { $pull: { savedBooks: {bookId: bookId} } },
+                        { new: true }
+                        );
+                        console.log(updatedUser)
+                        return updatedUser;
+                    }catch(error) {
+                        console.log(error)
+                    }
             }
-            throw new AuthenticationError('You need to be logged in!');
         },
         // working
         savedTvShows: async (parent, { TvShowsData }, context) => {
