@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 
 import Auth from '../../utils/auth';
 
 const Header = () => {
   const logout = (event) => {
     event.preventDefault();
+    localStorage.clear();
     Auth.logout();
   };
   return (
@@ -23,7 +25,7 @@ const Header = () => {
               <Link className="btn btn-lg btn-info m-2 profile-btn" to="/Profile">
                 {Auth.getProfile().data.username}'s profile
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <button Redirect to={'/'}  className="btn btn-lg btn-light m-2" onClick={logout}>
                 Logout
               </button>
             </>

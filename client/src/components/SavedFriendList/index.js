@@ -7,13 +7,13 @@ import {
   Button
 } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../../utils/queries';
+import { QUERY_ME, QUERY_USERS } from '../../utils/queries';
 
 
 const SavedFriends = () => {
 
 
-  const { loading, data } = useQuery(QUERY_ME);
+  const  { loading, data } = useQuery(QUERY_ME, QUERY_USERS);
 
   console.log(data)
 
