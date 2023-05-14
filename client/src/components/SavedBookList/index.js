@@ -23,7 +23,7 @@ const SavedBookList = () => {
     <>
       <div fluid className="text-light p-5">
         <Container>
-          <h1>Viewing saved books!</h1>
+          <h2></h2>
         </Container>
       </div>
       <Container>
@@ -36,12 +36,12 @@ const SavedBookList = () => {
           {data.me.savedBooks.map((book) => {
             return (
               <Col md="4" style={{ maxHeight: "600px", paddingTop:"20px"}}>
-                <Card key={book.bookId} border='dark' >
+                <Card key={book.bookId} className='book-box'>
                   {book.image ? <Card.Img style={{objectFit: 'contain', maxHeight: "200px"}} src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                   <Card.Body >
                     <Card.Title>{book.title}</Card.Title>
                     <p className='small'>Authors: {book.authors}</p>
-                    <Card.Text style={{ maxHeight: "200px", overflowY: "auto" }}>
+                    <Card.Text style={{ maxHeight: "200px", overflowY: "scroll" }}>
                       {book.description}
                     </Card.Text>                    
                   </Card.Body>

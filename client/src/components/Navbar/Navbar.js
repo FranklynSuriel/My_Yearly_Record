@@ -15,7 +15,7 @@ const NavBar = () => {
           <Bars />
           <NavMenu>
           <Link className="text-light" to="/">
-            <h1 className="m-0">My Yearly Record</h1>
+            <h1 className="m-0 main-title">My Yearly Record</h1>
           </Link>
             <NavLink to='/search' activeStyle>
               Search

@@ -169,14 +169,14 @@ const resolvers = {
                 }
             }
         },
-        addFriend: async (parents, { Friend }, context) => {
-            console.log(Friend)
+        addFriend: async (parents, { friend }, context) => {
+            console.log(friend)
             if (context.user) {
                 console.log("inside if")
                 try {
                     const updateUser = await User.findOneAndUpdate(
                         { _id: context.user._id },
-                        { $push: { savedFriends: Friend } },
+                        { $push: { savedFriends: friend } },
                         { new: true, runValidators: true }
                     );
                     console.log(updateUser)
@@ -186,13 +186,13 @@ const resolvers = {
                 }
             }
         },
-        removeFriends: async (parent, { Friend }, context) => {
+        removeFriends: async (parent, { friend }, context) => {
             if (context.user) {
                 console.log("inside if")
                 try {
                     const updateUser = await User.findOneAndUpdate(
                         { _id: context.user._id },
-                        { $pull: { savedFriends: Friend } },
+                        { $pull: { savedFriends: friend } },
                         { new: true, runValidators: true }
                     );
                     console.log(updateUser)

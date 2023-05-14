@@ -5,6 +5,7 @@
 --green: #2bf2ac;
 --brightorange: #ff4500;
 --pistachio: #a9d39e;
+--liteblue: #73c2fb;
 }
 
 body {
@@ -24,15 +25,21 @@ body {
  }
 h1 {
 font-family: 'Inter', sans-serif;
-font-size: 55px;
+/* font-size: 55px; */
 color: #0000ff;
 display: flex;
 justify-content: center;
 }
-.nav {
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  justify-content: flex-end;
+
+.main-title {
+  font-size: 50px;
+  text-shadow: 4px 3px var(--blue);
+  color: var(--liteblue);
+
+}
+
+nav{
+  width: 100%;
 }
 
 .nav-tabs {
@@ -197,4 +204,90 @@ justify-content: center;
   background-color: var(--liteorange);
   font-family: 'Inter', sans-serif;
   border:#BF4D28;
+}
+
+
+
+.profile-btn {
+margin: 10px;
+background-color: var(--jadeite);
+border: 2px solid;
+font-family: 'Inter', sans-serif;
+}
+
+.profile-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-family: 'Roboto Slab', serif;
+}
+
+/* .success-container {
+
+} */
+
+#login-form {
+  font-family: 'Inter', sans-serif;
+  margin-top: 20px;
+}
+#login-title {
+  font-family: 'Inter', sans-serif;
+  background-color: pink;
+  text-align: center;
+  color: var(--brightorange);
+}
+
+.profile-btns {
+  display:flex!important;
+}
+.profile-selection {
+  display:flex
+}
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* align-content: space-around; */
+  }
+
+.search-btn {
+  background-color:var(--liteorange);
+  font-family: 'Inter', sans-serif;
+  width: 200px;
+  border: 2px solid white;
+}
+
+.searchland-container {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+.search-landing {
+  margin-top: 20px;
+}
+
+.show-box {
+  background-color: var(--liteblue);
+}
+
+.book-box {
+  /* height: 400px; */
+  background-color: var(--liteblue);
+  border: 2px solid var(--brightorange);
+}
+.friend-text {
+  height: auto;
+  width: 200px;
+  background-color: var(--liteblue);
+  text-align: center;
+
+}
+.friend-box {
+  margin: 8px;
+}
+.profile-btn {
+  background-color: var(--liteorange);
+  font-family: 'Inter', sans-serif;
+  
 }

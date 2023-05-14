@@ -3,10 +3,12 @@ import { Container, Col, Form, Button, Card, Row, Dropdown, DropdownButton } fro
 
 function SearchLanding() {
     return (
-        <div>
+        <div className="search-landing">
             <h1>What do you want to add?</h1>
-            <Button href="/books">Books</Button>
-            <Button href="/tvshows">TV Shows</Button>
+            <div className="searchland-container">
+            <Button href="/books" className='search-btn'>Books</Button>
+            <Button href="/tvshows" className="search-btn">TV Shows</Button>
+            </div>
         </div>
         
     )

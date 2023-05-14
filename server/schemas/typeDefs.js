@@ -10,19 +10,19 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        savedBooks: [Books]!
-        savedTvShows: [TvShows]!
-        savedFriends: [Friends]!
+        savedBooks: [Book]!
+        savedTvShows: [TvShow]!
+        savedFriends: [Friend]!
     }
 
-    type Books {
+    type Book {
         authors: [String]
         title: String
         description: String
         image: String
         bookStatus: String
         bookId: String
-        bookComments: [Comments]!
+        bookComments: [Comment]!
         
     }
 
@@ -35,13 +35,13 @@ const typeDefs = gql`
         bookStatus: String
     }
 
-    type TvShows {
+    type TvShow {
         name: String
         overview: String
         poster: String
         tvShowsId: String
         tvShowsStatus: String
-        tvShowsComments: [Comments]!
+        tvShowsComments: [Comment]!
     }
 
     input TvShowInput {
@@ -52,13 +52,13 @@ const typeDefs = gql`
         tvShowsStatus: String
     }
 
-    type Comments {
+    type Comment {
         _id: ID!
         comments: [String]
         
     }
     
-    type Friends {
+    type Friend {
         username: String
         
     }
@@ -87,8 +87,8 @@ const typeDefs = gql`
         bookCommentsCreate( comments: String!, bookId: String!): String
         removeBookComment( bookId: String!, _id: ID!): String
 
-        addFriend( Friend: FriendInput!): Friends
-        removeFriends( Friend: FriendInput!): String
+        addFriend( friend: FriendInput!): User
+        removeFriends( friend: FriendInput!): User
     }
 `;
 
