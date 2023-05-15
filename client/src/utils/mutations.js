@@ -92,6 +92,16 @@ mutation RemoveTvShows($tvShowsId: String!) {
         tvShowsId
         tvShowsStatus
         }
+        savedBooks {
+            bookId
+            title
+            image
+            authors
+            description
+        }
+        savedFriends {
+            username
+        }
     }
 }
 `;
