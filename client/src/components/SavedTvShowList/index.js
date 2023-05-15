@@ -29,7 +29,7 @@ const SavedTvShows = () => {
       <Container>
         <h2 className='pt-5 savedtv-title'>
           {data.me.savedTvShows.length
-            ? `Viewing ${data.me.savedTvShows.length} saved ${data.me.savedTvShows.length === 1 ? 'TvShow' : 'TvShows'}:`
+            ? `Viewing ${data.me.savedTvShows.length} saved ${data.me.savedTvShows.length === 1 ? 'TV Show' : 'TV Shows'}:`
             : 'You have no saved TvShows!'}
         </h2>
         <Row>
@@ -37,7 +37,7 @@ const SavedTvShows = () => {
             return (
               <Col md="4" style={{ maxHeight: "600px", paddingTop:"20px"}}>
                 <Card key={tvShow.tvShowId} className='show-box h-100' >
-                  {tvShow.image ? <Card.Img style={{objectFit: 'contain', maxHeight: "200px"}} src={tvShow.image} alt={`The cover for ${tvShow.name}`} variant='top' /> : null}
+                  {tvShow.poster ? <Card.Img style={{objectFit: 'contain', maxHeight: "200px"}} src={tvShow.poster} alt={`The cover for ${tvShow.name}`} variant='top' /> : null}
                   <Card.Body >
                     <Card.Title>{tvShow.name}</Card.Title>
                     <p className='small'>Authors: {tvShow.authors}</p>
