@@ -36,7 +36,7 @@ const SavedBookList = () => {
           {data.me.savedBooks.map((book) => {
             return (
               <Col md="4" style={{ maxHeight: "600px", paddingTop:"20px"}}>
-                <Card key={book.bookId} className='book-box'>
+                <Card key={book.bookId} className='book-box h-100'>
                   {book.image ? <Card.Img style={{objectFit: 'contain', maxHeight: "200px"}} src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                   <Card.Body >
                     <Card.Title>{book.title}</Card.Title>

@@ -11,7 +11,7 @@ import "./App.css";
 import Landing from './pages/Landing';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import Friend from './pages/Friend'
 import Profile from './pages/Profile';
 import {SearchShows} from './pages/Search';
@@ -91,7 +91,7 @@ function App() {
 							/>
 						</Routes>
 					</div>
-					<Footer />
+					{/* <Footer /> */}
 				</div>
 			</Router>
 		</ApolloProvider>

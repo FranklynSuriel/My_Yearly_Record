@@ -36,7 +36,7 @@ const SavedTvShows = () => {
           {data.me.savedTvShows.map((tvShow) => {
             return (
               <Col md="4" style={{ maxHeight: "600px", paddingTop:"20px"}}>
-                <Card key={tvShow.tvShowId} className='show-box' >
+                <Card key={tvShow.tvShowId} className='show-box h-100' >
                   {tvShow.image ? <Card.Img style={{objectFit: 'contain', maxHeight: "200px"}} src={tvShow.image} alt={`The cover for ${tvShow.name}`} variant='top' /> : null}
                   <Card.Body >
                     <Card.Title>{tvShow.name}</Card.Title>

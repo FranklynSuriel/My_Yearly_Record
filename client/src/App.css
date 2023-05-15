@@ -8,6 +8,13 @@
 --liteblue: #73c2fb;
 }
 
+html, body, #root {
+  height: 100%;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+ }
 body {
   /* background: rgb(162,30,149);
   background: linear-gradient(0deg, rgba(162,30,149,1) 19%, rgba(222,199,251,1) 89%); */
@@ -103,12 +110,7 @@ nav{
   font-size: 14px;
 }
 
-.footer {
-  position: absolute;
-  right: 50%;
-  bottom:0;
-  /* padding-bottom: 4px; */
-}
+
 
 .friend-card {
   width: 350px;
@@ -289,5 +291,41 @@ font-family: 'Inter', sans-serif;
 .profile-btn {
   background-color: var(--liteorange);
   font-family: 'Inter', sans-serif;
-  
+
+}
+.box {
+  --size: 50px;
+  --R: calc(var(--size)*1.28);
+
+  -webkit-mask:
+    radial-gradient(var(--R) at 50% calc(1.8*var(--size)),#000 99%,#0000 101%) 
+      calc(50% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
+    radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 
+      50% var(--size)/calc(4*var(--size)) 100% repeat-x;
+  background: linear-gradient(90deg,#FCBD60,#ff4500);
+  height: 150px;
+  maring: 15px;
+}
+
+.footer-container {
+  position: relative;
+  text-align: center;
+  margin-top: auto;
+
+}
+.footer {
+  position: absolute;
+  right: 50%;
+  bottom:0;
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto Slab', serif;
+  /* padding-bottom: 4px; */
+}
+.footer.text {
+  text-align: center;
+}
+.footer-box {
+  bottom:0;
+  /* position: absolute; */
 }
