@@ -82,14 +82,15 @@ mutation SavedTvShows($TvShowsData: TvShowInput!) {
 `;
 
 export const REMOVE_SHOW = gql`
-mutation RemoveShow($showData: ShowInput!) {
-    savedShow(showData: $showData) {
-        savedShows {
+mutation RemoveTvShows($tvShowsId: String!) {
+    removeTvShows(tvShowsId: $tvShowsId) {
+        username
+        savedTvShows {
         name
         overview
         poster
         tvShowsId
-        tvShowStatus
+        tvShowsStatus
         }
     }
 }

@@ -15,6 +15,7 @@ query Me {
             name
             overview
             poster
+            tvShowsId
         }
         savedFriends {
             username
