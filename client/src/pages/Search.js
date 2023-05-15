@@ -107,7 +107,6 @@ export const SearchBooks = () => {
 	return (
 		<>
 			<div className="text-light bg- p-5">
-				{/* <Container className="search-container"> */}
 				<p className="search-title">Add to your Records!</p>
 				<Container className="search-container">
 					<Form onSubmit={handleFormSubmit}>

@@ -246,9 +246,7 @@ font-family: 'Inter', sans-serif;
   font-family: 'Roboto Slab', serif;
 }
 
-/* .success-container {
 
-} */
 .card-header {
   background-color: var(--pink);
   font-family: 'Inter', sans-serif;
@@ -295,7 +293,6 @@ font-family: 'Inter', sans-serif;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* align-content: space-around; */
   }
 
 .search-btn {

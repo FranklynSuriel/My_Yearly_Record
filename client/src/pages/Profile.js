@@ -32,7 +32,6 @@ const SavedFriends = () => {
 
   console.log(data)
 
-  // if data isn't here yet, say so
   if (loading) return <p>Loading...</p>;
 
   return (
