@@ -1,10 +1,12 @@
 import decode from 'jwt-decode';
 
 class AuthService {
+  // decode token for authentication
   getProfile() {
     return decode(this.getToken());
   }
 
+  // When User login, 
   loggedIn() {
     const token = this.getToken();
     // If there is a token and it's not expired, return `true`
@@ -23,15 +25,16 @@ class AuthService {
     return false;
   }
 
+  // retrieves the token from the local storage by using the key 'id_token' and returns it.
   getToken() {
     return localStorage.getItem('id_token');
   }
-
+  // store the token in localStore when the user login and redirect to landing "/"
   login(idToken) {
     localStorage.setItem('id_token', idToken);
     window.location.assign('/');
   }
-
+  // remove the token from localStore and redirect to landing when the user logout
   logout() {
     localStorage.removeItem('id_token');
     window.location.assign('/');

@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+// Create the mutation to update or delete data from the database
 export const ADD_USER = gql`
 mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {

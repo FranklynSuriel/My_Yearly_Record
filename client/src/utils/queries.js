@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+// Create the queries to retrieve data from the database
 export const QUERY_ME = gql`
 query Me {
     me {
