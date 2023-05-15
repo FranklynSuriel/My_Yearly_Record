@@ -9,7 +9,7 @@ import {
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_USERS } from '../../utils/queries';
 
-
+// Function allows you to remove a friend from you save list in the database and local storage.
 const SavedFriends = () => {
 
 
