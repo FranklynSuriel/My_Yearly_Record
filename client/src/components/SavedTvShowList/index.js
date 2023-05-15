@@ -29,13 +29,7 @@ const SavedTvShows = () => {
   });
 
     const handleDeleteShow = async (tvShowsId) => {
-    console.log(tvShowsId)
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    // if (!token) {
-    //   return false;
-    // }
-    console.log(removeTvShows)
+  
     
     try {
       const { data } = await removeTvShows({
