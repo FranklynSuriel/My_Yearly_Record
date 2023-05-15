@@ -136,8 +136,7 @@ export const SearchBooks = () => {
 						return (
 							<Col md="4" style={{ padding: "20px" }}>
 								
-								<Card key={book.bookId} border="dark" className="h-100" 									style={{ backgroundColor: "#F29506" }}
-									>
+								<Card key={book.bookId} border="dark" className="h-100 show-box">
 									{book.image ? (
 										<Card.Img
 											src={book.image}
@@ -295,17 +294,17 @@ export const SearchShows = () => {
 						return (
 							<Col md="4" style={{ padding: "20px" }}>
 								<Card
-								 className="h-100"
+								 className="h-100 show-box"
 									key={show.id}
 									border="dark"
-									style={{ backgroundColor: "#F29506" }}
+									// style={{ backgroundColor: "#73c2fb" }}
 								>
 									{show.poster ? (
 										<Card.Img
 											src={`https://image.tmdb.org/t/p/original/${show.poster}`}
 											alt={`The cover for ${show.name}`}
 											variant="top"
-											style={{ height: "325px" }}
+											style={{objectFit: 'contain', maxHeight: "200px"}}
 										/>
 									) : null}
 									<Card.Body>

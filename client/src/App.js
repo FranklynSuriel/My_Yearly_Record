@@ -54,9 +54,10 @@ function App() {
 				<div className='page-container'>
 					<div className="content-wrap">
 					<Router>
-						<div className="flex-column justify-flex-start min-100-vh">
+						<div className="flex-column justify-flex-start min-vh-100">
 							<NavBar />
-							{/* <div className="container vh-100"> */}
+							<div className="container">
+							
 								<Routes>
 									<Route
 										path="/"
@@ -95,7 +96,7 @@ function App() {
 										element={<div>Not Found</div>}
 									/>
 								</Routes>
-							
+							</div>
 						 </div>
 						
 						<Footer />
