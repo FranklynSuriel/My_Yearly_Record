@@ -10,6 +10,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
 import { useMutation } from '@apollo/client';
 import { REMOVE_SHOW } from '../../utils/mutations';
+import { removeWatchedShowIds } from '../../utils/localStorage';
 
 
 const SavedTvShows = () => {
@@ -42,6 +43,9 @@ const SavedTvShows = () => {
             tvShowsId: tvShowsId
       }
       });
+
+      removeWatchedShowIds(tvShowsId)
+
     } catch (err) {
       console.log(err)
     }
