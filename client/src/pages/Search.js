@@ -18,12 +18,14 @@ import {
 	getWatchedShowIds,
 } from "../utils/localStorage";
 import { saveReadBookIds } from "../utils/localStorage";
+import noImageFound from "../assets/images/no-image-found.png";
 
 export const SearchBooks = () => {
 	const [searchedBooks, setSearchedBooks] = useState([]);
 	const [searchInput, setSearchInput] = useState("");
 	const [saveBookMutation] = useMutation(SAVED_BOOK);
 	const [readBookIds, setReadBookIds] = useState(getReadBookIds());
+	const [searchError, setSearchError] = useState(false);
 
 	useEffect(() => {
 		return () => {
@@ -50,17 +52,25 @@ export const SearchBooks = () => {
 
 			const { items } = await response.json();
 
-			const bookData = items.map((book) => ({
-				bookId: book.id,
-				authors: book.volumeInfo.authors || ["No author to display"],
-				title: book.volumeInfo.title,
-				description: book.volumeInfo.description || "No description provided",
-				image: book.volumeInfo.imageLinks?.thumbnail || "",
-			}));
+			if (!items || items.length === 0) {
+				setSearchError(true);
 
-			console.log(bookData);
+				setSearchedBooks([]);
+			} else {
+				setSearchError(false);
 
-			setSearchedBooks(bookData);
+				const bookData = items.map((book) => ({
+					bookId: book.id,
+					authors: book.volumeInfo.authors || ["No author to display"],
+					title: book.volumeInfo.title,
+					description: book.volumeInfo.description || "No description provided",
+					image: book.volumeInfo.imageLinks?.thumbnail || noImageFound,
+				}));
+
+				setSearchedBooks(bookData);
+				console.log(bookData);
+			}
+
 			setSearchInput("");
 		} catch (err) {
 			console.error(err);
@@ -70,7 +80,7 @@ export const SearchBooks = () => {
 	const handleSaveBook = async (bookId) => {
 		const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
 		console.log(bookToSave);
-		console.log(typeof bookId)
+		console.log(typeof bookId);
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
 
 		if (!token) {
@@ -129,6 +139,8 @@ export const SearchBooks = () => {
 				<h2 className="pt-5">
 					{searchedBooks.length
 						? `Viewing ${searchedBooks.length} results:`
+						: searchError
+						? "No books were found"
 						: "Search for a book to begin"}
 				</h2>
 				<Row>
@@ -183,6 +195,7 @@ export const SearchShows = () => {
 	const [searchInput, setSearchInput] = useState("");
 	const [saveShowMutation] = useMutation(SAVED_SHOW);
 	const [watchedShowIds, setWatchedShowIds] = useState(getWatchedShowIds());
+	const [searchError, setSearchError] = useState(false);
 
 	useEffect(() => {
 		return () => {
@@ -208,29 +221,38 @@ export const SearchShows = () => {
 			const showData = response.results.map((show) => ({
 				tvShowsId: show.id.toString(),
 				name: show.name,
-				overview: show.overview,
-				poster: "https://image.tmdb.org/t/p/original" + show.poster_path || "",
+				overview: show.overview || "No overview available",
+				poster: show.poster_path
+					? "https://image.tmdb.org/t/p/original" + show.poster_path
+					: noImageFound,
 			}));
 
+			setSearchedShows([]);
 
+			if (showData.length === 0) {
+				setSearchError(true);
+			} else {
+				setSearchError(false);
+				setSearchedShows(showData);
+			}
 
-			setSearchedShows(showData);
 			setSearchInput("");
 		} catch (err) {
 			console.error(err);
 		}
 	};
 
-
 	const handleSaveShow = async (tvShowsId) => {
-		const showToSave = searchedShows.find((show) => show.tvShowsId === tvShowsId);
+		const showToSave = searchedShows.find(
+			(show) => show.tvShowsId === tvShowsId
+		);
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
 
 		if (!token) {
 			return false;
 		}
 		try {
-			const stringTvShowsId = tvShowsId.toString()
+			const stringTvShowsId = tvShowsId.toString();
 			const { data } = await saveShowMutation({
 				variables: {
 					TvShowsData: {
@@ -239,14 +261,13 @@ export const SearchShows = () => {
 						poster: showToSave.poster,
 						tvShowsId: showToSave.tvShowsId,
 					},
-				}
+				},
 			});
 
 			setWatchedShowIds([...watchedShowIds, stringTvShowsId]);
 			saveWatchedShowIds([...watchedShowIds, stringTvShowsId]);
-
 		} catch (err) {
-			console.log(err)
+			console.log(err);
 		}
 	};
 
@@ -287,7 +308,9 @@ export const SearchShows = () => {
 				<h2 className="pt-5">
 					{searchedShows.length
 						? `Viewing ${searchedShows.length} results:`
-						: "Search for a tv show to begin"}
+						: searchError
+						? "No TV shows were found"
+						: "Search for a TV show to begin"}
 				</h2>
 				<Row>
 					{searchedShows.map((show) => {
@@ -301,7 +324,7 @@ export const SearchShows = () => {
 								>
 									{show.poster ? (
 										<Card.Img
-											src={`https://image.tmdb.org/t/p/original/${show.poster}`}
+											src={show.poster}
 											alt={`The cover for ${show.name}`}
 											variant="top"
 											style={{objectFit: 'contain', maxHeight: "200px"}}

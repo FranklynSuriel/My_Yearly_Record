@@ -5,6 +5,7 @@ query Me {
     me {
         username
         savedBooks {
+            bookId
             title
             image
             authors
@@ -14,6 +15,7 @@ query Me {
             name
             overview
             poster
+            tvShowsId
         }
         savedFriends {
             username

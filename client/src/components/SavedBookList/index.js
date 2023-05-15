@@ -3,21 +3,56 @@ import {
   Container,
   Card,
   Row,
-  Col
+  Col,
+  Button
 } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
-
+import { useMutation } from '@apollo/client';
+import { REMOVE_BOOK } from '../../utils/mutations'
+import Auth from '../../utils/auth'
+import { removeReadBookIds } from '../../utils/localStorage';
 
 const SavedBookList = () => {
-
-
   const { loading, data } = useQuery(QUERY_ME);
+  const [removeBook, { error }] = useMutation(REMOVE_BOOK, {
+    update(cache, { data: { removeBook } }) {
+      try {
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: { me: removeBook },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
+
   
-  
+  const handleDeleteBook = async (bookId) => {
+    console.log(bookId)
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    // if (!token) {
+    //   return false;
+    // }
+    console.log(removeBook)
+    try {
+      const { data } = await removeBook({
+        variables: {
+            bookId: bookId
+        },
+      });
+
+      removeReadBookIds(bookId)
+      
+    } catch (err) {
+      console.log(err)
+    }
+  }
   // if data isn't here yet, say so
   if (loading) return <p>Loading...</p>;
-  
+
   console.log(data)
   return (
     <>
@@ -43,7 +78,10 @@ const SavedBookList = () => {
                     <p className='small'>Authors: {book.authors}</p>
                     <Card.Text style={{ maxHeight: "200px", overflowY: "scroll" }}>
                       {book.description}
-                    </Card.Text>                    
+                    </Card.Text>
+                    <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
+                      Delete this Book!
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>

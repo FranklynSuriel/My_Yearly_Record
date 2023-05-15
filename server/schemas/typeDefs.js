@@ -1,5 +1,7 @@
+// require gql
 const { gql } = require('apollo-server-express');
 
+// Create the schema 
 const typeDefs = gql`
     type Query {
         me: User
