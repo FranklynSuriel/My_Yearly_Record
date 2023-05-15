@@ -12,7 +12,7 @@ import { useMutation } from '@apollo/client';
 import { REMOVE_SHOW } from '../../utils/mutations';
 import { removeWatchedShowIds } from '../../utils/localStorage';
 
-
+// Function allows you to remove a tv show from you save list in the database and local storage.
 const SavedTvShows = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const [removeTvShows, {error}] = useMutation(REMOVE_SHOW, {
@@ -68,7 +68,7 @@ const SavedTvShows = () => {
         <h2 className='pt-5 savedtv-title'>
           {data.me.savedTvShows.length
             ? `Viewing ${data.me.savedTvShows.length} saved ${data.me.savedTvShows.length === 1 ? 'TV Show' : 'TV Shows'}:`
-            : 'You have no saved TvShows!'}
+            : 'You have no saved TV Shows!'}
         </h2>
         <Row>
           {data.me.savedTvShows.map((tvShow) => {

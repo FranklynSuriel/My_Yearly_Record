@@ -8,7 +8,6 @@ import {
 	Row
 } from "react-bootstrap";
 import Auth from "../utils/auth";
-// import { Navigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { SAVED_BOOK, SAVED_SHOW } from "../utils/mutations";
 import { searchGoogleBooks, searchTMDB } from "../utils/API";
@@ -19,6 +18,8 @@ import {
 } from "../utils/localStorage";
 import { saveReadBookIds } from "../utils/localStorage";
 import noImageFound from "../assets/images/no-image-found.png";
+
+// This function searches the books via the Google Book API
 
 export const SearchBooks = () => {
 	const [searchedBooks, setSearchedBooks] = useState([]);
@@ -76,6 +77,8 @@ export const SearchBooks = () => {
 			console.error(err);
 		}
 	};
+
+	// This function saves books to local storage and the database.
 
 	const handleSaveBook = async (bookId) => {
 		const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
@@ -190,6 +193,7 @@ export const SearchBooks = () => {
 	);
 };
 
+// This function searches for tv shows via the TMDB API
 export const SearchShows = () => {
 	const [searchedShows, setSearchedShows] = useState([]);
 	const [searchInput, setSearchInput] = useState("");
@@ -242,6 +246,7 @@ export const SearchShows = () => {
 		}
 	};
 
+	// This function saves a tv show to local storage and the database.
 	const handleSaveShow = async (tvShowsId) => {
 		const showToSave = searchedShows.find(
 			(show) => show.tvShowsId === tvShowsId
@@ -320,7 +325,6 @@ export const SearchShows = () => {
 								 className="h-100 show-box"
 									key={show.id}
 									border="dark"
-									// style={{ backgroundColor: "#73c2fb" }}
 								>
 									{show.poster ? (
 										<Card.Img

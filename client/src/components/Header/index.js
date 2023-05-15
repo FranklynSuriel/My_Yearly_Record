@@ -13,10 +13,7 @@ const Header = () => {
     <header className=" text-light mb-4 py-3 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
-          {/* <Link className="text-light" to="/">
-            <h1 className="m-0">My Yearly Record</h1>
-          </Link> */}
-          {/* <p className="m-0">Create your own watched and read records</p> */}
+       
         </div>
         <div className='header-container'>
           {Auth.loggedIn() ? (
