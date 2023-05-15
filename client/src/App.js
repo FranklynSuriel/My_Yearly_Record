@@ -50,14 +50,13 @@ function App() {
 		// <div className='page-container'>
 		// 	<div className="content-wrap">
 
-				<ApolloProvider client={client}>
-				<div className='page-container'>
-					<div className="content-wrap">
+		<ApolloProvider client={client}>
+			<div className='page-container min-vh-100'>
+				<div className="content-wrap">
 					<Router>
-						<div className="flex-column justify-flex-start min-vh-100">
+						<div className="flex-column justify-flex-start ">
 							<NavBar />
 							<div className="container">
-							
 								<Routes>
 									<Route
 										path="/"
@@ -97,17 +96,15 @@ function App() {
 									/>
 								</Routes>
 							</div>
-						 </div>
-						
-						<Footer />
-					
-				</Router>
+							<Footer />
+						</div>
+					</Router>
 				</div>
-				</div>
-			</ApolloProvider>
-			
+			</div>
+		</ApolloProvider>
+
 		// </div>
-	// </div>
+		// </div>
 	);
 }
 
