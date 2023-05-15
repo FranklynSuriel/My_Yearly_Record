@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client'
 import { ADD_USER } from '../utils/mutations'
-// import { Form, Button, Alert } from 'react-bootstrap';
 
 const Signup = () => {
     // set initial form state
@@ -12,10 +11,7 @@ const Signup = () => {
         email: '',
         password: ''
     });
-    // set state for form validation
-    // const [validated] = useState(false);
-    // set state for alert
-    // const [showAlert, setShowAlert] = useState(false);
+   
     const [addUser, { error, data }] = useMutation(ADD_USER); //{ error, data }
 
     const handleChange = (event) => {
