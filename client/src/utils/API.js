@@ -1,10 +1,11 @@
-
+// retrieve the API Key from the server side 
 const getAPIKey = async () => {
   const response = await fetch('/api/environment');
   const data = await response.json();
   return data;
 }
 
+// Create a function to search for the tv show API
 export const searchTMDB = async (query) => {
   try {
     const apiKey = await getAPIKey();
@@ -18,7 +19,7 @@ export const searchTMDB = async (query) => {
   }
 };
   
-  
+  // Create a function to search for the Google Books API
 export const searchGoogleBooks = (query) => {
 	return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
 };

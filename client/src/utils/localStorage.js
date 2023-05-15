@@ -1,3 +1,4 @@
+// Create a function to get the saved books id from the localStore
 export const getReadBookIds = () => {
     const savedBookIds = localStorage.getItem('saved_read_books');
 
@@ -17,8 +18,8 @@ export const getReadBookIds = () => {
       return [];
     }
   };
-  
 
+// Create a function to saved the books id to the localStore
 export const saveReadBookIds = (bookIdArr) => {
     console.log(bookIdArr)
     if (bookIdArr.length) {
@@ -26,6 +27,7 @@ export const saveReadBookIds = (bookIdArr) => {
     }
 }
 
+// Create a function to remove a book id from the local store 
 export const removeReadBookIds = (bookId) => {
     const savedBookIds = localStorage.getItem('saved_read_books')
     ? JSON.parse(localStorage.getItem('saved_read_books'))
@@ -40,7 +42,7 @@ export const removeReadBookIds = (bookId) => {
 
     return true;
 };
-
+// Create a function to get the saved tv shows id from the localStore
 export const getWatchedShowIds = () => {
     const savedShowIds = localStorage.getItem('saved_watched_shows');
 
@@ -61,6 +63,7 @@ export const getWatchedShowIds = () => {
     }
   };
 
+// Create a function to saved the tv shows id to the localStore
 export const saveWatchedShowIds = (showIdArr) => {
     console.log(showIdArr)
     if (showIdArr.length) {
@@ -68,7 +71,7 @@ export const saveWatchedShowIds = (showIdArr) => {
     }
 }
 
-
+// Create a function to remove a tv show id from the local store
 export const removeWatchedShowIds = (showId) => {
     const savedShowIds = localStorage.getItem('saved_watched_shows')
     ? JSON.parse(localStorage.getItem('saved_watched_shows'))
@@ -83,6 +86,7 @@ export const removeWatchedShowIds = (showId) => {
 
     return true;
 };
+// Future Development: Create a function to saved the friend list to the localStore
 export const saveFriend = () => {
   const savedFriends = localStorage.getItem('saved_friends');
 
@@ -102,10 +106,3 @@ export const saveFriend = () => {
     return [];
   }
 };
-
-// export const saveFriendIds = (friendIdArr) => {
-//   console.log(friendIdArr)
-//   if (friendIdArr.length) {
-//       localStorage.setItem('saved_read_books', JSON.stringify(friendIdArr))
-//   }
-// }
