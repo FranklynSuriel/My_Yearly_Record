@@ -13,6 +13,9 @@ import { REMOVE_BOOK } from '../../utils/mutations'
 import Auth from '../../utils/auth'
 import { removeReadBookIds } from '../../utils/localStorage';
 
+
+// Function allows you to remove a book from you save list in the database and local storage.
+
 const SavedBookList = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const [removeBook, { error }] = useMutation(REMOVE_BOOK, {
