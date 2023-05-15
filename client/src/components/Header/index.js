@@ -7,7 +7,6 @@ import Auth from '../../utils/auth';
 const Header = () => {
   const logout = (event) => {
     event.preventDefault();
-    localStorage.clear();
     Auth.logout();
   };
   return (

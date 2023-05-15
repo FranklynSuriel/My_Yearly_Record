@@ -51,10 +51,10 @@ function App() {
 		// 	<div className="content-wrap">
 
 		<ApolloProvider client={client}>
-			<div className='page-container min-vh-100'>
+			<div className='page-container '>
 				<div className="content-wrap">
 					<Router>
-						<div className="flex-column justify-flex-start ">
+						<div className="flex-column justify-flex-start min-vh-100">
 							<NavBar />
 							<div className="container">
 								<Routes>
@@ -96,8 +96,8 @@ function App() {
 									/>
 								</Routes>
 							</div>
-							<Footer />
 						</div>
+							<Footer />
 					</Router>
 				</div>
 			</div>
