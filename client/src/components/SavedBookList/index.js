@@ -9,8 +9,8 @@ import {
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
 import { useMutation } from '@apollo/client';
-import { REMOVE_BOOK } from '../../utils/mutations'
-import Auth from '../../utils/auth'
+import { REMOVE_BOOK } from '../../utils/mutations';
+
 import { removeReadBookIds } from '../../utils/localStorage';
 
 
@@ -33,13 +33,7 @@ const SavedBookList = () => {
 
   
   const handleDeleteBook = async (bookId) => {
-    console.log(bookId)
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // if (!token) {
-    //   return false;
-    // }
-    console.log(removeBook)
     try {
       const { data } = await removeBook({
         variables: {
@@ -61,7 +55,6 @@ const SavedBookList = () => {
     <>
       <div fluid className="text-light p-5">
         <Container>
-          <h2></h2>
         </Container>
       </div>
       <Container>

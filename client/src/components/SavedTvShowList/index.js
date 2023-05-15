@@ -29,13 +29,7 @@ const SavedTvShows = () => {
   });
 
     const handleDeleteShow = async (tvShowsId) => {
-    console.log(tvShowsId)
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    // if (!token) {
-    //   return false;
-    // }
-    console.log(removeTvShows)
+  
     
     try {
       const { data } = await removeTvShows({
@@ -61,7 +55,6 @@ const SavedTvShows = () => {
     <>
       <div fluid className="text-light p-5">
         <Container>
-          {/* <h1>Viewing saved tv shows!</h1> */}
         </Container>
       </div>
       <Container>
