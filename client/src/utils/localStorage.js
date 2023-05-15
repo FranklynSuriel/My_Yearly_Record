@@ -83,5 +83,29 @@ export const removeWatchedShowIds = (showId) => {
 
     return true;
 };
+export const saveFriend = () => {
+  const savedFriends = localStorage.getItem('saved_friends');
 
+  console.log(savedFriends)
 
+  if (!savedFriends) {
+    console.log('No saved_friends item in localStorage');
+    return [];
+  }
+
+  try {
+    const parsedFriend = JSON.parse(savedFriends);
+    console.log('Parsed saved_friends item:', parsedFriend);
+    return parsedFriend;
+  } catch (err) {
+    console.log('Error parsing saved_friends item:', err);
+    return [];
+  }
+};
+
+// export const saveFriendIds = (friendIdArr) => {
+//   console.log(friendIdArr)
+//   if (friendIdArr.length) {
+//       localStorage.setItem('saved_read_books', JSON.stringify(friendIdArr))
+//   }
+// }

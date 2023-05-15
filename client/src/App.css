@@ -6,18 +6,37 @@
 --brightorange: #ff4500;
 --pistachio: #a9d39e;
 --liteblue: #73c2fb;
+/* --pink: #e7c2ba; */
+--pink: #fd9f96;
 }
 
+html, body, #root {
+  height: 100%;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+ }
 body {
+  /* background: var(--green); */
   /* background: rgb(162,30,149);
   background: linear-gradient(0deg, rgba(162,30,149,1) 19%, rgba(222,199,251,1) 89%); */
-  background: rgb(43,242,172);
-  background: linear-gradient(0deg, rgba(43,242,172,1) 24%, rgba(252,189,96,0.9178265056022409) 90%);
+   background: rgb(43,242,172); 
+  background: linear-gradient(0deg, rgba(43,242,172,1) 24%, rgba(252,189,96,0.9178265056022409) 90%); 
+  background-attachment: fixed;
   background-size: cover;
-  height: auto;
-  min-height: 100%;
+  /* height: auto; */
+  /* min-height: 100%; */
   /* background-repeat: no-repeat; */
  }
+ .page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content-wrap {
+  flex: 1;
+}
 
  .navbar {
   display:flex;
@@ -46,12 +65,7 @@ nav{
   font-size: 20px;
 
 }
-.openModalBtn {
-  background-color: var(--jadeite);
-  font-size: 14px;
-  font-family: 'Inter', sans-serif;
 
-}
 .container-box {
   border:4px solid black;
   background-color: white; 
@@ -64,6 +78,8 @@ nav{
   grid-template-columns: 60% 40%;
   grid-template-rows: fit-content(50%) fit-content(50%);
   margin-top: 35px;
+  margin-left: 40px;
+  margin-right: 25px;
 }
 
 .landing-item1 {
@@ -71,12 +87,15 @@ nav{
   grid-column-end: 1;
   grid-row-start: 1;
   grid-row-end: 1;
-  border: 4px solid black;
-  border-radius: 10px;
-  margin: 3px;
-  padding: 2px;
-  background-color: antiquewhite;
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto Slab', serif;
+  color: var(--brightorange);
+  text-shadow: 3px 2px var(--pink);
+  margin-left: 25px;
+  margin-right: 25px;
+  font-size: 45px;
+
 }
 .landing-item2 {
   grid-column-start: 2;
@@ -101,14 +120,12 @@ nav{
   border-radius: 10px;
   background-color: antiquewhite;
   font-size: 14px;
+  height: 250px;
+  font-size: fill;
+  margin-bottom: 200px;
 }
 
-.footer {
-  position: absolute;
-  right: 50%;
-  bottom:0;
-  /* padding-bottom: 4px; */
-}
+
 
 .friend-card {
   width: 350px;
@@ -225,6 +242,29 @@ font-family: 'Inter', sans-serif;
 /* .success-container {
 
 } */
+.card-header {
+  background-color: var(--pink);
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  color: white;
+}
+.sign-card {
+  margin-top: 16px;
+  border: 2px solid var(--liteblue);
+  box-shadow: 2px 3px 2px var(--liteblue);
+
+}
+.login-card {
+  display: flex;
+  justify-content: center;
+ 
+}
+.btn-block {
+  background: var(--liteorange);
+  font-family: 'Inter', sans-serif;
+  box-shadow: 2px 3px 2px var(--brightorange);
+  margin-left: 3px;
+}
 
 #login-form {
   font-family: 'Inter', sans-serif;
@@ -232,7 +272,7 @@ font-family: 'Inter', sans-serif;
 }
 #login-title {
   font-family: 'Inter', sans-serif;
-  background-color: pink;
+  background-color: var(--pink);
   text-align: center;
   color: var(--brightorange);
 }
@@ -269,6 +309,7 @@ font-family: 'Inter', sans-serif;
 
 .show-box {
   background-color: var(--liteblue);
+  border: 2px solid var(--brightorange);
 }
 
 .book-box {
@@ -289,5 +330,43 @@ font-family: 'Inter', sans-serif;
 .profile-btn {
   background-color: var(--liteorange);
   font-family: 'Inter', sans-serif;
-  
+
+}
+.box {
+  --size: 50px;
+  --R: calc(var(--size)*1.28);
+
+  -webkit-mask:
+    radial-gradient(var(--R) at 50% calc(1.8*var(--size)),#000 99%,#0000 101%) 
+      calc(50% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
+    radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 
+      50% var(--size)/calc(4*var(--size)) 100% repeat-x;
+  background: linear-gradient(90deg,#FCBD60,#ff4500);
+  height: 200px;
+  maring: 15px;
+  width: 100%;
+}
+
+
+.main-footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 75px;
+  /* margin-top: 100vh; */
+}
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+  margin-left: 75px;
+  align-items: flex-end;
+  position: absolute;
+  color: var(--blue);
+  font-family: 'Inter', sans-serif;
+}
+
+
+a {
+  text-decoration: none;
 }

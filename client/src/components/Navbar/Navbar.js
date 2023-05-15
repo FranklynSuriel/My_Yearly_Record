@@ -29,6 +29,9 @@ const NavBar = () => {
           </NavMenu>
         </Nav>
         </div>
+        <div className="container vw-100">
+
+        </div>
       </>
     );
   };

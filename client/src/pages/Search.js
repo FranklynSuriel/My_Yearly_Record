@@ -5,12 +5,10 @@ import {
 	Form,
 	Button,
 	Card,
-	Row,
-	Dropdown,
-	DropdownButton,
+	Row
 } from "react-bootstrap";
 import Auth from "../utils/auth";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { SAVED_BOOK, SAVED_SHOW } from "../utils/mutations";
 import { searchGoogleBooks, searchTMDB } from "../utils/API";
@@ -118,7 +116,7 @@ export const SearchBooks = () => {
 									onChange={(e) => setSearchInput(e.target.value)}
 									type="text"
 									size="xlg"
-									placeholder="Search"
+									placeholder="Search for a book"
 								/>
 							</Col>
 
@@ -149,13 +147,14 @@ export const SearchBooks = () => {
 					{searchedBooks.map((book) => {
 						return (
 							<Col md="4" style={{ padding: "20px" }}>
-								<Card key={book.bookId} border="dark">
+								
+								<Card key={book.bookId} border="dark" className="h-100 show-box">
 									{book.image ? (
 										<Card.Img
 											src={book.image}
 											alt={`The cover for ${book.title}`}
 											variant="top"
-											style={{ height: "325px" }}
+											style={{objectFit: 'contain', maxHeight: "200px"}}
 										/>
 									) : null}
 									<Card.Body>
@@ -175,12 +174,13 @@ export const SearchBooks = () => {
 												{readBookIds?.some(
 													(savedBookId) => savedBookId === book.bookId
 												)
-													? "This book has already been saved!"
+													? "This book has been saved!"
 													: "Save this Book!"}
 											</Button>
 										)}
 									</Card.Body>
 								</Card>
+
 							</Col>
 						);
 					})}
@@ -274,8 +274,8 @@ export const SearchShows = () => {
 	return (
 		<>
 			<div className="text-light bg-#06F283  p-5">
+				<p className="search-title">Add to your Records!</p>
 				<Container>
-					<h1>Search for TV Shows!</h1>
 					<Form onSubmit={handleFormSubmitTV}>
 						<Row>
 							<Col xs={12} md={8}>
@@ -284,18 +284,19 @@ export const SearchShows = () => {
 									value={searchInput}
 									onChange={(e) => setSearchInput(e.target.value)}
 									type="text"
-									size="md"
-									placeholder="Search for a tv show"
+									size="xlg"
+									placeholder="Search for a TV show"
 								/>
 							</Col>
 							<Col xs={12} md={4}>
 								<Button
+									className="submit-btn"
 									type="submit"
 									variant="success"
 									size="lg"
-									style={{ backgroundColor: "p#06F283" }}
+
 								>
-									Submit Search
+									Search
 								</Button>
 							</Col>
 						</Row>
@@ -316,16 +317,17 @@ export const SearchShows = () => {
 						return (
 							<Col md="4" style={{ padding: "20px" }}>
 								<Card
+								 className="h-100 show-box"
 									key={show.id}
 									border="dark"
-									style={{ backgroundColor: "#F29506" }}
+									// style={{ backgroundColor: "#73c2fb" }}
 								>
 									{show.poster ? (
 										<Card.Img
 											src={show.poster}
 											alt={`The cover for ${show.name}`}
 											variant="top"
-											style={{ height: "325px" }}
+											style={{objectFit: 'contain', maxHeight: "200px"}}
 										/>
 									) : null}
 									<Card.Body>

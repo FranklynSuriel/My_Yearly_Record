@@ -41,9 +41,9 @@ const Signup = () => {
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
+        <div className="card sign-card">
+          <h4 className="card-header">Sign Up</h4>
+          <div className="card-body login-card">
             {data ? (
               <p>
                 Success! You may now head{' '}
@@ -76,7 +76,7 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-primary"
+                  className="btn btn-block"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >

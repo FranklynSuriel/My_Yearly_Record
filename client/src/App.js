@@ -14,8 +14,8 @@ import Login from './pages/Login';
 import Footer from './components/Footer';
 import Friend from './pages/Friend'
 import Profile from './pages/Profile';
-import {SearchShows} from './pages/Search';
-import {SearchBooks} from './pages/Search';
+import { SearchShows } from './pages/Search';
+import { SearchBooks } from './pages/Search';
 import NavBar from './components/Navbar/Navbar';
 import SearchLanding from './pages/SearchLanding';
 
@@ -47,54 +47,67 @@ const client = new ApolloClient({
 
 function App() {
 	return (
-		<ApolloProvider client={client}>
-			<Router>
-				<div className="flex-column justify-flex-start min-100-vh">	
-					<NavBar />
-					<div className="container vh-100 ">
-						<Routes>
-							<Route
-								path="/"
-								element={<Landing />}
-							/>
-							<Route
-								path="/login"
-								element={<Login />}
-							/>
-							<Route
-								path="/signup"
-								element={<Signup />}
-							/>
-							<Route
-								path="/profile"
-								element={<Profile />}
-							/>
-							<Route
-								path="/friends"
-								element={<Friend />}
-							/>
-							<Route
-								path="/search"
-								element={<SearchLanding />}
-							/>
-							<Route
-								path="/tvshows"
-								element={<SearchShows />}
-							/>
-							<Route
-								path="/books"
-								element={<SearchBooks />}
-							/>
-							<Route
-								path="*"
-								element={<div>Not Found</div>}
-							/>
-						</Routes>
-					</div>
-					<Footer />
+		// <div className='page-container'>
+		// 	<div className="content-wrap">
+
+				<ApolloProvider client={client}>
+				<div className='page-container'>
+					<div className="content-wrap">
+					<Router>
+						<div className="flex-column justify-flex-start min-vh-100">
+							<NavBar />
+							<div className="container">
+							
+								<Routes>
+									<Route
+										path="/"
+										element={<Landing />}
+									/>
+									<Route
+										path="/login"
+										element={<Login />}
+									/>
+									<Route
+										path="/signup"
+										element={<Signup />}
+									/>
+									<Route
+										path="/profile"
+										element={<Profile />}
+									/>
+									<Route
+										path="/friends"
+										element={<Friend />}
+									/>
+									<Route
+										path="/search"
+										element={<SearchLanding />}
+									/>
+									<Route
+										path="/tvshows"
+										element={<SearchShows />}
+									/>
+									<Route
+										path="/books"
+										element={<SearchBooks />}
+									/>
+									<Route
+										path="*"
+										element={<div>Not Found</div>}
+									/>
+								</Routes>
+							</div>
+						 </div>
+						
+						<Footer />
+					
+				</Router>
 				</div>
-			</Router>
-		</ApolloProvider>
+				</div>
+			</ApolloProvider>
+			
+		// </div>
+	// </div>
 	);
 }
 
