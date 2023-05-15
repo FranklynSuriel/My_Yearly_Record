@@ -1,8 +1,8 @@
+// Require necessary packages and files
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
-
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-
+// Create an endpoint to secretly pass the api key to the client
 app.get('/api/environment', (req, res) => {
   const SHOW_API_KEY = process.env.API_KEY;
   const responseData =  SHOW_API_KEY ;
