@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    HomeOutlined,
     SmileOutlined
 } from '@ant-design/icons';
 import { Space } from 'antd';
@@ -13,10 +12,8 @@ function Footer() {
             <div className="box" style={{ '--size': '40px' }}>
 
             <div className='footer-container'>
-                {/* <div className="box" style={{ '--size': '40px' }}> */}
 
                           
-                            {/* Column2 */}
                             <div className='row'>
                                 <div className='col'>
                                 <h5>Data provided by:</h5>

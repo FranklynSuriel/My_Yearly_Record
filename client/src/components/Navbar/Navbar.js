@@ -7,6 +7,8 @@ import {
   Bars,
   NavMenu
 } from './NavbarElements';
+
+// Navbar helps the user navigate the site and changes based on be in logged in or out
 const NavBar = () => {
     return (
       <>

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router';
+
 
 import Auth from '../../utils/auth';
+
+// Header is an component inside of the navbar.
 
 const Header = () => {
   const logout = (event) => {
