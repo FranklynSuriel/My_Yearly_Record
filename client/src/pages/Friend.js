@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
-// import { Navigate, useParams } from 'react-router-dom';
-// import Auth from '../utils/auth';
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { QUERY_USERS } from "../utils/queries";
 import { ADD_FRIEND } from "../utils/mutations"
-import { saveFriend } from "../utils/localStorage";
 
 
 
@@ -43,13 +40,11 @@ const Friends = () => {
     };
 
     if (loading) return <p>Loading...</p>;
-    // if (error) return <p>Error :(</p>;
 
     console.log(data)
 
     return (
         <>
-            {/* <div> */}
             <div className="flex-row justify-center mb-3">
                 <h1>All Users</h1>
                 <div className="friend-group">
@@ -88,7 +83,6 @@ const Friends = () => {
                     </Row>
                 </div>
             </div>
-            {/* </div> */}
         </>
     );
 };

@@ -23,7 +23,6 @@ const Signup = () => {
         event.preventDefault();
         console.log("Hello from handleFormSubmit");
         console.log(userFormData);
-        // check if form has everything (as per react-bootstrap docs)
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -41,7 +40,6 @@ const Signup = () => {
 
         } catch (err) {
             console.error(err);
-            // setShowAlert(true);
         }
 
         setUserFormData({
