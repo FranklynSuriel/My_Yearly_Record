@@ -68,7 +68,7 @@ const SavedTvShows = () => {
         <h2 className='pt-5 savedtv-title'>
           {data.me.savedTvShows.length
             ? `Viewing ${data.me.savedTvShows.length} saved ${data.me.savedTvShows.length === 1 ? 'TV Show' : 'TV Shows'}:`
-            : 'You have no saved TvShows!'}
+            : 'You have no saved TV Shows!'}
         </h2>
         <Row>
           {data.me.savedTvShows.map((tvShow) => {
