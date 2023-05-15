@@ -39,15 +39,6 @@ const SavedFriends = () => {
                 <Card key={friend.friendId} className='friend-text' >
                   <Card.Body >
                     <Card.Title>{friend.username}</Card.Title>
-                    {/* <p>
-                      <strong> Book lists: </strong> {friend.savedBooks.slice(0, 5).map((book) => book.title).join(", ") || ["No books to display."]}
-                    </p>
-                    <p>
-                      <strong>TV Show lists:</strong> {friend.savedTvShows.map((show) => show.name).join(", ") || ["No tv shows to display."]}
-                    </p>
-                    <p>
-                      <strong>Friends:</strong> {friend.savedFriends.map((friend) => friend.username).join(", ") || ["No friends to display."]}
-                    </p> */}
                     <Button className='join-btn'>Remove Friend</Button>
                   </Card.Body>
                 </Card>
